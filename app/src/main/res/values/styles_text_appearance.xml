@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="app.textAppearance" parent="">
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="app.textAppearance.smaller">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="app.textAppearance.bigger">
+        <item name="android:textSize">75sp</item>
+    </style>
+
+    <style name="app.textAppearance.theBiggest">
+        <item name="android:textSize">100sp</item>
+    </style>
+
+
+    <style name="app.textAppearance.condensed">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="app.textAppearance.condensed.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="app.textAppearance.condensed.bold.big">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="app.textAppearance.condensed.small">
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

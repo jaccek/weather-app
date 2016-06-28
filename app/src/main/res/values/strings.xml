@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Weather App</string>
+    <string name="celsiusDegrees">°C</string>
+    <string name="next_days">Next Days</string>
+    <string name="wind_icon">F</string>
+    <string name="sunrise_icon">A</string>
+    <string name="arrow_down_icon">b</string>
+    <string name="arrow_up_icon">B</string>
 </resources>

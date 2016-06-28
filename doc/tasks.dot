@@ -1,0 +1,43 @@
+digraph {
+    rankdir=LR;
+
+    ui_splash_screen -> splash_screen;
+    ui_main_page -> displaying_today_weather;
+    ui_forecast -> displaying_forecast;
+
+    fahrenheit_to_celsius -> displaying_today_weather;
+    fahrenheit_to_celsius -> displaying_forecast;
+    mph_to_kph -> displaying_today_weather;
+    mph_to_kph -> displaying_forecast;
+
+    downloading_data -> saving_data;
+    saving_data -> offline_mode;
+    saving_data -> displaying_today_weather;
+    saving_data -> displaying_forecast;
+
+    displaying_today_weather -> searching_cities;
+    searching_cities -> saving_selected_cities;
+
+
+
+
+
+    ui_main_page  [style="filled", fillcolor="yellowgreen"];
+    ui_forecast;
+    ui_splash_screen;
+
+    fahrenheit_to_celsius [style="filled", fillcolor="yellowgreen"];
+    mph_to_kph            [style="filled", fillcolor="yellowgreen"];
+
+    downloading_data;
+    saving_data;
+
+    splash_screen;
+    displaying_today_weather;
+    displaying_forecast;
+
+    searching_cities;
+    saving_selected_cities;
+
+    offline_mode;
+}
