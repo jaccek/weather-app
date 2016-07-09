@@ -1,4 +1,4 @@
-package com.github.jaccek.weatherapp;
+package com.github.jaccek.weatherapp.weather.actual;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.jaccek.weatherapp.R;
 import com.github.jaccek.weatherapp.network.data.IWeatherData;
 import com.github.jaccek.weatherapp.utils.UnitConverter;
 
@@ -14,9 +15,9 @@ import java.util.Locale;
 /**
  * Activity showing weather data.
  */
-public class WeatherActivity extends AppCompatActivity
+public class ActivityActualWeather extends AppCompatActivity
 {
-    private final static int LAYOUT_ID = R.layout.activity_weather;
+    private final static int LAYOUT_ID = R.layout.activity_actual_weather;
 
     private ImageView mBackgroundImageView;
     private TextView mTemperatureView;

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.github.jaccek.weatherapp.weather.actual.ActivityActualWeather;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
@@ -11,7 +13,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_splash_screen);
 
-        Intent intent = new Intent(this, WeatherActivity.class);
+        Intent intent = new Intent(this, ActivityActualWeather.class);
         startActivity(intent);
         finish();
         overridePendingTransition(0, 0);

@@ -34,14 +34,18 @@ public class UnitConverterTest
     }
 
     @Test
-    public void testTimestampToHour() throws Exception
+    public void testTimestampToHourLessThan10() throws Exception
     {
         String date = UnitConverter.timestampToHour(1467660743000L);
         String expected = "9:32 pm";
         assertEquals(expected, date);
+    }
 
-        date = UnitConverter.timestampToHour(1467624180000L);
-        expected = "11:23 am";
+    @Test
+    public void testTimestampToHourBiggerThan10() throws Exception
+    {
+        String date = UnitConverter.timestampToHour(1467624180000L);
+        String expected = "11:23 am";
         assertEquals(expected, date);
     }
 }
