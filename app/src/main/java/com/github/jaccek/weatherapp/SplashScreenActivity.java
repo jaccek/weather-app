@@ -13,6 +13,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, WeatherActivity.class);
         startActivity(intent);
+        finish();
         overridePendingTransition(0, 0);
     }
 }
