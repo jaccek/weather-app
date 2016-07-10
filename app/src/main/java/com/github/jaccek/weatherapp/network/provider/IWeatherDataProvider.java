@@ -1,13 +1,11 @@
 package com.github.jaccek.weatherapp.network.provider;
 
-import com.github.jaccek.weatherapp.network.data.IWeatherData;
-
-import java.io.IOException;
+import com.github.jaccek.weatherapp.network.data.IWeatherForecast;
 
 /**
  * Interface for any data provider.
  */
 public interface IWeatherDataProvider
 {
-    IWeatherData getWeatherData() throws IOException;
+    IWeatherForecast getWeatherForecast() throws Exception;
 }

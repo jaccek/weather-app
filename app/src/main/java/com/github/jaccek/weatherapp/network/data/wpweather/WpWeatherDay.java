@@ -7,52 +7,42 @@ import java.util.List;
 /**
  * Weather data for one day (from WP weather).
  */
-public class WpWeatherDay
+public class WpWeatherDay // TODO: add interface
 {
     private long mDayTimestamp;
     @SerializedName("sunrise")
-    private long mSunriseTimestamp;
+    private String mSunriseHour;
     @SerializedName("sunset")
-    private long mSunsetTimestamp;
+    private String mSunsetHour;
     @SerializedName("weather")
-    private List<WpWeather3Hours> mWeather;
+    private List<WpWeatherData> mWeather;
 
-    public long getDayTimestamp()
+    public String getSunriseHour()
     {
-        return mDayTimestamp;
+        return mSunriseHour;
     }
 
-    public void setDayTimestamp(long pDayTimestamp)
+    public void setSunriseHour(String pSunriseHour)
     {
-        mDayTimestamp = pDayTimestamp;
+        mSunriseHour = pSunriseHour;
     }
 
-    public long getSunriseTimestamp()
+    public String getSunsetHour()
     {
-        return mSunriseTimestamp;
+        return mSunsetHour;
     }
 
-    public void setSunriseTimestamp(long pSunriseTimestamp)
+    public void setSunsetHour(String pSunsetHour)
     {
-        mSunriseTimestamp = pSunriseTimestamp;
+        mSunsetHour = pSunsetHour;
     }
 
-    public long getSunsetTimestamp()
-    {
-        return mSunsetTimestamp;
-    }
-
-    public void setSunsetTimestamp(long pSunsetTimestamp)
-    {
-        mSunsetTimestamp = pSunsetTimestamp;
-    }
-
-    public List<WpWeather3Hours> getWeather()
+    public List<WpWeatherData> getWeather()
     {
         return mWeather;
     }
 
-    public void setWeather(List<WpWeather3Hours> pWeather)
+    public void setWeather(List<WpWeatherData> pWeather)
     {
         mWeather = pWeather;
     }

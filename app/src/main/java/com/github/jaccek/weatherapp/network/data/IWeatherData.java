@@ -21,14 +21,7 @@ public interface IWeatherData
     }
 
     float getWindSpeed();
-    float getTemperature();
+    int getTemperature();
 
     WeatherType getWeatherType();
-
-    boolean isToday();
-
-    long getSunriseTimestamp();
-    long getSunsetTimestamp();
-
-    // TODO: get forecast
 }

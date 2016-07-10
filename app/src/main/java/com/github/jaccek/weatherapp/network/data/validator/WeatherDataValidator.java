@@ -15,6 +15,11 @@ public class WeatherDataValidator
      */
     public boolean isValid(IWeatherData pWeatherData)
     {
+        if (pWeatherData == null)
+        {
+            return false;
+        }
+
         try
         {
             // check wind speed
@@ -24,18 +29,23 @@ public class WeatherDataValidator
             }
 
             // check sunrise and sunset
-            if (pWeatherData.getSunriseTimestamp() <= 0L)
-            {
-                return false;
-            }
-            if (pWeatherData.getSunsetTimestamp() <= 0L)
-            {
-                return false;
-            }
+//            if (pWeatherData.getSunriseHour() <= 0L)
+//            {
+//                return false;
+//            }
+//            if (pWeatherData.getSunsetHour() <= 0L)
+//            {
+//                return false;
+//            }
 
             // only check null pointer exception
             pWeatherData.getTemperature();
-            pWeatherData.getWeatherType();
+
+            if (pWeatherData.getWeatherType() == null
+                    || pWeatherData.getWeatherType() == IWeatherData.WeatherType.UNKNOWN)
+            {
+                return false;
+            }
         }
         catch(NullPointerException ex)
         {

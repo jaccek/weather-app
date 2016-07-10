@@ -45,7 +45,7 @@ public class ActivityActualWeather extends AppCompatActivity
 //        IWeatherData data;
 //        try
 //        {
-//            data = provider.getWeatherData();
+//            data = provider.getWeatherForecast();
 //            setWeatherData(data);
 //        }
 //        catch(IOException e)
@@ -59,8 +59,8 @@ public class ActivityActualWeather extends AppCompatActivity
         String temperature = String.format(Locale.getDefault(), "%d", Math.round(pWeatherData.getTemperature()));
         mTemperatureView.setText(temperature);
 
-        mSunriseHourView.setText(UnitConverter.timestampToHour(pWeatherData.getSunriseTimestamp()));
-        mSunsetHourView.setText(UnitConverter.timestampToHour(pWeatherData.getSunsetTimestamp()));
+//        mSunriseHourView.setText(UnitConverter.timestampToHour(pWeatherData.getSunriseHour()));
+//        mSunsetHourView.setText(UnitConverter.timestampToHour(pWeatherData.getSunsetHour()));
 
         String wind = String.format(Locale.getDefault(), "%.1f", pWeatherData.getWindSpeed());
         mWindSpeedView.setText(wind);

@@ -1,12 +1,17 @@
 package com.github.jaccek.weatherapp.network.provider.wpweather;
 
-import com.github.jaccek.weatherapp.network.data.IWeatherData;
-import com.github.jaccek.weatherapp.network.data.wpweather.WpWeatherData;
+import com.github.jaccek.weatherapp.network.data.IWeatherForecast;
+import com.github.jaccek.weatherapp.network.data.wpweather.WpWeatherDay;
+import com.github.jaccek.weatherapp.network.data.wpweather.WpWeatherForecast;
+import com.github.jaccek.weatherapp.network.data.wpweather.json.JsonDeserializerWpWeatherDays;
 import com.github.jaccek.weatherapp.network.provider.IWeatherDataProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -22,7 +27,9 @@ public class WpWeatherProvider implements IWeatherDataProvider
 
     public WpWeatherProvider()
     {
+        Type dayListType = new TypeToken<List<WpWeatherDay>>() {}.getType();
         Gson gson = new GsonBuilder()
+                .registerTypeAdapter(dayListType, new JsonDeserializerWpWeatherDays())
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -34,9 +41,9 @@ public class WpWeatherProvider implements IWeatherDataProvider
     }
 
     @Override
-    public IWeatherData getWeatherData() throws IOException
+    public IWeatherForecast getWeatherForecast() throws Exception
     {
-        Response<WpWeatherData> response = mConnector.getWeather(1201290).execute();
+        Response<WpWeatherForecast> response = mConnector.getWeather(1201290).execute();
         if (response.code() != 200)
         {
             throw new IOException("Connection error (http code: " + response.code() + ")");

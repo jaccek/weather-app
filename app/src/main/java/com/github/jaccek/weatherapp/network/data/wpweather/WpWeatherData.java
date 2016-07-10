@@ -3,49 +3,69 @@ package com.github.jaccek.weatherapp.network.data.wpweather;
 import com.github.jaccek.weatherapp.network.data.IWeatherData;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
- * Weather data from WP weather endpoints.
+ * Weather data for 3 hours (from WP weather).
  */
 public class WpWeatherData implements IWeatherData
 {
-    @SerializedName("days")
-    List<WpWeatherDay> mDays;
-
-    @Override
-    public float getWindSpeed()
-    {
-        return 0;
-    }
-
-    @Override
-    public float getTemperature()
-    {
-        return 0;
-    }
+    private int mStartHour;
+    private int mEndHour;
+    @SerializedName("temp")
+    private int mTemperature;
+    @SerializedName("windSpeed")
+    private float mWindSpeed;
+    private WeatherType mWeatherType;
 
     @Override
     public WeatherType getWeatherType()
     {
-        return null;
+        return mWeatherType;
+    }
+
+    public void setWeatherType(WeatherType pWeatherType)
+    {
+        mWeatherType = pWeatherType;
     }
 
     @Override
-    public boolean isToday()
+    public int getTemperature()
     {
-        return false;
+        return mTemperature;
+    }
+
+    public void setTemperature(int pTemperature)
+    {
+        mTemperature = pTemperature;
     }
 
     @Override
-    public long getSunriseTimestamp()
+    public float getWindSpeed()
     {
-        return 0;
+        return mWindSpeed;
     }
 
-    @Override
-    public long getSunsetTimestamp()
+    public void setWindSpeed(float pWindSpeed)
     {
-        return 0;
+        mWindSpeed = pWindSpeed;
+    }
+
+    public int getStartHour()
+    {
+        return mStartHour;
+    }
+
+    public void setStartHour(int pStartHour)
+    {
+        mStartHour = pStartHour;
+    }
+
+    public int getEndHour()
+    {
+        return mEndHour;
+    }
+
+    public void setEndHour(int pEndHour)
+    {
+        mEndHour = pEndHour;
     }
 }
