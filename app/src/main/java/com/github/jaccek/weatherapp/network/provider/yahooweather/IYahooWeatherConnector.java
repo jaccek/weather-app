@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 /**
  * Retrofit connector to Yahoo Weather api.
  */
-public interface YahooWeatherConnector
+public interface IYahooWeatherConnector
 {
     @GET("yql")
     Call<YahooWeatherData> getWeather(

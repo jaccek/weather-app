@@ -41,7 +41,7 @@ public class ActivityActualWeather extends AppCompatActivity
         mCityNameView = (TextView) findViewById(R.id.activity_weather_city);
         mDateView = (TextView) findViewById(R.id.activity_weather_date);
 
-//        WeatherDataProvider provider = new YahooWeatherProvider();
+//        IWeatherDataProvider provider = new YahooWeatherProvider();
 //        IWeatherData data;
 //        try
 //        {

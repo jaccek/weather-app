@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Interface for any data provider.
  */
-public interface WeatherDataProvider
+public interface IWeatherDataProvider
 {
     IWeatherData getWeatherData() throws IOException;
 }

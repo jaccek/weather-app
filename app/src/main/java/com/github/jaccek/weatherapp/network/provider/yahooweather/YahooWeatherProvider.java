@@ -3,7 +3,7 @@ package com.github.jaccek.weatherapp.network.provider.yahooweather;
 import com.github.jaccek.weatherapp.network.EndpointConfig;
 import com.github.jaccek.weatherapp.network.data.yahooweather.YahooWeatherData;
 import com.github.jaccek.weatherapp.network.data.yahooweather.json.YahooWeatherDataDeserializer;
-import com.github.jaccek.weatherapp.network.provider.WeatherDataProvider;
+import com.github.jaccek.weatherapp.network.provider.IWeatherDataProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,9 +17,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Data provider from Yahoo Weather api.
  */
-public class YahooWeatherProvider implements WeatherDataProvider
+public class YahooWeatherProvider implements IWeatherDataProvider
 {
-    private final YahooWeatherConnector mProvider;
+    private final IYahooWeatherConnector mProvider;
 
     public YahooWeatherProvider()
     {
@@ -32,7 +32,7 @@ public class YahooWeatherProvider implements WeatherDataProvider
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        mProvider = retrofit.create(YahooWeatherConnector.class);
+        mProvider = retrofit.create(IYahooWeatherConnector.class);
     }
 
     @Override
