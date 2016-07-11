@@ -5,7 +5,7 @@ import com.github.jaccek.weatherapp.network.data.IWeatherData;
 /**
  * Validator for {@link IWeatherData}.
  */
-public class WeatherDataValidator
+public class ValidatorWeatherData
 {
     /**
      * Checks if data is valid.
@@ -15,10 +15,10 @@ public class WeatherDataValidator
      */
     public boolean isValid(IWeatherData pWeatherData)
     {
-        if (pWeatherData == null)
-        {
-            return false;
-        }
+//        if (pWeatherData == null)
+//        {
+//            return false;
+//        }
 
         try
         {
@@ -27,16 +27,6 @@ public class WeatherDataValidator
             {
                 return false;
             }
-
-            // check sunrise and sunset
-//            if (pWeatherData.getSunriseHour() <= 0L)
-//            {
-//                return false;
-//            }
-//            if (pWeatherData.getSunsetHour() <= 0L)
-//            {
-//                return false;
-//            }
 
             // only check null pointer exception
             pWeatherData.getTemperature();

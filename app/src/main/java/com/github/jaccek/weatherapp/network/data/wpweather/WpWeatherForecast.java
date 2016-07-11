@@ -2,7 +2,7 @@ package com.github.jaccek.weatherapp.network.data.wpweather;
 
 import android.support.annotation.Nullable;
 
-import com.github.jaccek.weatherapp.network.data.IWeatherData;
+import com.github.jaccek.weatherapp.network.data.IWeatherDay;
 import com.github.jaccek.weatherapp.network.data.IWeatherForecast;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,13 +17,6 @@ public class WpWeatherForecast implements IWeatherForecast
     @SerializedName("days")
     List<WpWeatherDay> mDays;
 
-    @Nullable
-    @Override
-    public IWeatherData getWeatherData(Calendar pDate)
-    {
-        return null;
-    }
-
     public List<WpWeatherDay> getDays()
     {
         return mDays;
@@ -32,5 +25,12 @@ public class WpWeatherForecast implements IWeatherForecast
     public void setDays(List<WpWeatherDay> pDays)
     {
         mDays = pDays;
+    }
+
+    @Nullable
+    @Override
+    public IWeatherDay getWeatherDay(Calendar pDate)
+    {
+        return null;
     }
 }

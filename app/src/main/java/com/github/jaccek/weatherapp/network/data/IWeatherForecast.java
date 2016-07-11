@@ -10,5 +10,5 @@ import java.util.Calendar;
 public interface IWeatherForecast
 {
     @Nullable
-    IWeatherData getWeatherData(Calendar pDate);
+    IWeatherDay getWeatherDay(Calendar pDate);
 }

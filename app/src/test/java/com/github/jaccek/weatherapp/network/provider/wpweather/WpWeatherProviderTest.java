@@ -1,7 +1,7 @@
 package com.github.jaccek.weatherapp.network.provider.wpweather;
 
 import com.github.jaccek.weatherapp.network.data.IWeatherForecast;
-import com.github.jaccek.weatherapp.network.data.validator.WeatherForecastValidator;
+import com.github.jaccek.weatherapp.network.data.validator.ValidatorWeatherForecast;
 
 import org.junit.Test;
 
@@ -27,7 +27,7 @@ public class WpWeatherProviderTest
     {
         WpWeatherProvider provider = new WpWeatherProvider();
         IWeatherForecast data = provider.getWeatherForecast();
-        WeatherForecastValidator validator = new WeatherForecastValidator();
+        ValidatorWeatherForecast validator = new ValidatorWeatherForecast();
 
         assertTrue(validator.isValid(data));
     }

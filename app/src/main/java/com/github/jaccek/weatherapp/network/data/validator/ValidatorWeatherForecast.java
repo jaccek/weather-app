@@ -3,13 +3,13 @@ package com.github.jaccek.weatherapp.network.data.validator;
 import com.github.jaccek.weatherapp.network.data.IWeatherForecast;
 
 /**
- * Created by jacek on 7/10/16.
+ * Validator for {@link IWeatherForecast}.
  */
-public class WeatherForecastValidator
+public class ValidatorWeatherForecast
 {
     public boolean isValid(IWeatherForecast pForecast)
     {
-        return false;
+        return pForecast != null;
     }
 
 }

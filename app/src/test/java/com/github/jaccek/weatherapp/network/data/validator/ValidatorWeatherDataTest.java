@@ -11,14 +11,14 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
 
 /**
- * Test for {@link WeatherDataValidator}
+ * Test for {@link ValidatorWeatherData}
  */
-public class WeatherDataValidatorTest
+public class ValidatorWeatherDataTest
 {
     @Test
     public void isValidTestValidObject() throws Exception
     {
-        WeatherDataValidator validator = new WeatherDataValidator();
+        ValidatorWeatherData validator = new ValidatorWeatherData();
         WpWeatherData data = getValidWpWeatherData();
 
         assertTrue(validator.isValid(data));
@@ -27,14 +27,14 @@ public class WeatherDataValidatorTest
     @Test
     public void isValidTestNullObject() throws Exception
     {
-        WeatherDataValidator validator = new WeatherDataValidator();
+        ValidatorWeatherData validator = new ValidatorWeatherData();
         assertFalse(validator.isValid(null));
     }
 
     @Test
     public void isValidTestNegativeWindSpeed() throws Exception
     {
-        WeatherDataValidator validator = new WeatherDataValidator();
+        ValidatorWeatherData validator = new ValidatorWeatherData();
         WpWeatherData data = getValidWpWeatherData();
 
         data.setWindSpeed(-0.1f);
@@ -44,7 +44,7 @@ public class WeatherDataValidatorTest
     @Test
     public void isValidTestNullWeatherType() throws Exception
     {
-        WeatherDataValidator validator = new WeatherDataValidator();
+        ValidatorWeatherData validator = new ValidatorWeatherData();
         WpWeatherData data = getValidWpWeatherData();
 
         data.setWeatherType(null);
@@ -54,7 +54,7 @@ public class WeatherDataValidatorTest
     @Test
     public void isValidTestUnknownWeatherType() throws Exception
     {
-        WeatherDataValidator validator = new WeatherDataValidator();
+        ValidatorWeatherData validator = new ValidatorWeatherData();
         WpWeatherData data = getValidWpWeatherData();
 
         data.setWeatherType(IWeatherData.WeatherType.UNKNOWN);
@@ -62,7 +62,7 @@ public class WeatherDataValidatorTest
     }
 
     @NonNull
-    private WpWeatherData getValidWpWeatherData()
+    public static WpWeatherData getValidWpWeatherData()
     {
         WpWeatherData data = new WpWeatherData();
 
