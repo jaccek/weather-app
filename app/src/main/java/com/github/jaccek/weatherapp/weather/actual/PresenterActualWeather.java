@@ -1,10 +1,12 @@
 package com.github.jaccek.weatherapp.weather.actual;
 
 /**
- * Created by jacek on 7/9/16.
+ * Presenter for actual weather activity.
  */
 public interface PresenterActualWeather
 {
+    void onCreate();
+
     void onNextWeekButtonClicked();
 
     void onCityNameClicked();

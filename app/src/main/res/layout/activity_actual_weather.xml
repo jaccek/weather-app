@@ -40,7 +40,7 @@
                     android:ellipsize="end"
                     android:lines="1"
                     android:textAppearance="@style/app.textAppearance.condensed.bold.big"
-                    tools:text="New York very long name"/>
+                    android:text="New York very long name"/>
 
                 <TextView
                     android:id="@+id/activity_weather_date"

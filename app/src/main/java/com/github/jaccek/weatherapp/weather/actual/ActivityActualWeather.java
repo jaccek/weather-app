@@ -15,7 +15,7 @@ import java.util.Locale;
 /**
  * Activity showing weather data.
  */
-public class ActivityActualWeather extends AppCompatActivity
+public class ActivityActualWeather extends AppCompatActivity implements ViewActualWeather
 {
     private final static int LAYOUT_ID = R.layout.activity_actual_weather;
 
@@ -54,7 +54,8 @@ public class ActivityActualWeather extends AppCompatActivity
 //        }
     }
 
-    private void setWeatherData(IWeatherData pWeatherData)
+    @Override
+    public void showWeather(IWeatherData pWeatherData)
     {
         String temperature = String.format(Locale.getDefault(), "%d", Math.round(pWeatherData.getTemperature()));
         mTemperatureView.setText(temperature);
@@ -69,5 +70,17 @@ public class ActivityActualWeather extends AppCompatActivity
         mCityNameView.setText("TEST");
 
         mDateView.setText(UnitConverter.timestampToDate(System.currentTimeMillis()));
+    }
+
+    @Override
+    public void startActivityNextWeek()
+    {
+
+    }
+
+    @Override
+    public void startActivityChooseCity()
+    {
+
     }
 }
