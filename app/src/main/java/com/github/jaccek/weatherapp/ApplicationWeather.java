@@ -2,7 +2,7 @@ package com.github.jaccek.weatherapp;
 
 import android.app.Application;
 
-import com.github.jaccek.weatherapp.database.ManagerData;
+import com.github.jaccek.weatherapp.frameworks.database.ManagerData;
 
 /**
  * {@link Application} class.

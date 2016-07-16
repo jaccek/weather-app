@@ -1,8 +1,11 @@
 package com.github.jaccek.weatherapp.weather.actual;
 
-import com.github.jaccek.weatherapp.database.IManagerData;
-import com.github.jaccek.weatherapp.network.data.IWeatherData;
-import com.github.jaccek.weatherapp.network.data.wpweather.WpWeatherData;
+import com.github.jaccek.weatherapp.logic.database.IManagerData;
+import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherData;
+import com.github.jaccek.weatherapp.logic.presenter.actualweather.PresenterActualWeather;
+import com.github.jaccek.weatherapp.logic.presenter.actualweather.PresenterActualWeatherImpl;
+import com.github.jaccek.weatherapp.logic.view.actualweather.ViewActualWeather;
 
 import org.junit.Rule;
 import org.junit.Test;

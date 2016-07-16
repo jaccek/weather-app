@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme"
         android:name=".ApplicationWeather">
 
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".frameworks.view.splashscreen.ActivitySplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".weather.actual.ActivityActualWeather"/>
+        <activity android:name=".frameworks.view.actualweather.ActivityActualWeather"/>
     </application>
 
 </manifest>

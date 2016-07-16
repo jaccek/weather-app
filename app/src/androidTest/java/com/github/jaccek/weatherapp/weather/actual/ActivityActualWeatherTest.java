@@ -5,8 +5,9 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.github.jaccek.weatherapp.R;
-import com.github.jaccek.weatherapp.network.data.IWeatherData;
-import com.github.jaccek.weatherapp.network.data.wpweather.WpWeatherData;
+import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherData;
+import com.github.jaccek.weatherapp.frameworks.view.actualweather.ActivityActualWeather;
 
 import org.junit.Rule;
 import org.junit.Test;
