@@ -8,6 +8,19 @@ public class Hour
     private int mHour;
     private int mMinute;
 
+    public Hour(int pHour, int pMinute)
+    {
+        mHour = pHour;
+        mMinute = pMinute;
+    }
+
+    @Override
+    public String toString()
+    {
+        // TODO: add possibility to change format
+        return mHour + ":" + mMinute;
+    }
+
     public int getHour()
     {
         return mHour;

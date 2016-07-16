@@ -1,4 +1,6 @@
-package com.github.jaccek.weatherapp.core.entities;
+package com.github.jaccek.weatherapp.core.entities.weather;
+
+import com.github.jaccek.weatherapp.core.entities.Hour;
 
 /**
  * Weather data for whole day.

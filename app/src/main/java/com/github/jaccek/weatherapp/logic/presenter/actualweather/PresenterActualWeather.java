@@ -1,13 +1,51 @@
 package com.github.jaccek.weatherapp.logic.presenter.actualweather;
 
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
+import com.github.jaccek.weatherapp.frameworks.database.DataHandler;
+import com.github.jaccek.weatherapp.logic.database.IManagerData;
+import com.github.jaccek.weatherapp.logic.view.actualweather.IViewActualWeather;
+
 /**
- * Presenter for actual weather activity.
+ * Presenter for actual weather.
  */
-public interface PresenterActualWeather
+public class PresenterActualWeather implements IPresenterActualWeather, DataHandler<WeatherDataActual>
 {
-    void onCreate();
+    private IViewActualWeather mViewActualWeather;
+    private IManagerData mManagerData;
 
-    void onNextWeekButtonClicked();
+    public PresenterActualWeather(IViewActualWeather pViewActualWeather, IManagerData pManagerData)
+    {
+        mManagerData = pManagerData;
+        mViewActualWeather = pViewActualWeather;
+    }
 
-    void onCityNameClicked();
+    @Override
+    public void onCreate()
+    {
+        mManagerData.getActualWeather(this);
+    }
+
+    @Override
+    public void onNextWeekButtonClicked()
+    {
+        mViewActualWeather.startActivityNextWeek();
+    }
+
+    @Override
+    public void onCityNameClicked()
+    {
+        mViewActualWeather.startActivityChooseCity();
+    }
+
+    @Override
+    public void onData(WeatherDataActual pData)
+    {
+        mViewActualWeather.showWeather(pData);
+    }
+
+    @Override
+    public void onError()
+    {
+        mViewActualWeather.showConnectionError();
+    }
 }

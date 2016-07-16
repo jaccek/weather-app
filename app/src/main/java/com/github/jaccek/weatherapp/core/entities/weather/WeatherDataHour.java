@@ -1,4 +1,4 @@
-package com.github.jaccek.weatherapp.core.entities;
+package com.github.jaccek.weatherapp.core.entities.weather;
 
 /**
  * Weather data for one moment in day

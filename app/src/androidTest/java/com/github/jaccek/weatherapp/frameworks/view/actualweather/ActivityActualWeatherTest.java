@@ -1,13 +1,13 @@
-package com.github.jaccek.weatherapp.weather.actual;
+package com.github.jaccek.weatherapp.frameworks.view.actualweather;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.github.jaccek.weatherapp.R;
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
-import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherData;
-import com.github.jaccek.weatherapp.frameworks.view.actualweather.ActivityActualWeather;
+import com.github.jaccek.weatherapp.core.entities.Hour;
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherType;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,10 +32,12 @@ public class ActivityActualWeatherTest
     @Test
     public void showWeatherTest()
     {
-        final WpWeatherData weatherData = new WpWeatherData();
+        final WeatherDataActual weatherData = new WeatherDataActual();
         weatherData.setTemperature(18);
         weatherData.setWindSpeed(1.693f);
-        weatherData.setWeatherType(IWeatherData.WeatherType.SUNNY);
+        weatherData.setSunriseHour(new Hour(5, 15));
+        weatherData.setSunsetHour(new Hour(21, 31));
+        weatherData.setWeatherType(WeatherType.SUNNY);
 
         mActivityRule.getActivity().runOnUiThread(new Runnable()
         {
@@ -48,6 +50,9 @@ public class ActivityActualWeatherTest
 
         onView(withId(R.id.activity_weather_temperature)).check(matches(withText("18")));
         onView(withId(R.id.activity_weather_wind_speed)).check(matches(withText("1,7")));
+        onView(withId(R.id.activity_weather_sunrise_hour)).check(matches(withText("5:15")));
+        onView(withId(R.id.activity_weather_sunset_hour)).check(matches(withText("21:31")));
+        // TODO: test weather type
     }
 
 //    @Test

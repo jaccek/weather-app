@@ -7,16 +7,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jaccek.weatherapp.R;
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
 import com.github.jaccek.weatherapp.core.utils.UnitConverter;
-import com.github.jaccek.weatherapp.logic.view.actualweather.ViewActualWeather;
+import com.github.jaccek.weatherapp.logic.view.actualweather.IViewActualWeather;
 
 import java.util.Locale;
 
 /**
  * Activity showing weather data.
  */
-public class ActivityActualWeather extends AppCompatActivity implements ViewActualWeather
+public class ActivityActualWeather extends AppCompatActivity implements IViewActualWeather
 {
     private final static int LAYOUT_ID = R.layout.activity_actual_weather;
 
@@ -56,18 +56,18 @@ public class ActivityActualWeather extends AppCompatActivity implements ViewActu
     }
 
     @Override
-    public void showWeather(IWeatherData pWeatherData)
+    public void showWeather(WeatherDataActual pWeatherData)
     {
         String temperature = String.format(Locale.getDefault(), "%d", Math.round(pWeatherData.getTemperature()));
         mTemperatureView.setText(temperature);
 
-//        mSunriseHourView.setText(UnitConverter.timestampToHour(pWeatherData.getSunriseHour()));
-//        mSunsetHourView.setText(UnitConverter.timestampToHour(pWeatherData.getSunsetHour()));
+        mSunriseHourView.setText(pWeatherData.getSunriseHour().toString());
+        mSunsetHourView.setText(pWeatherData.getSunsetHour().toString());
 
         String wind = String.format(Locale.getDefault(), "%.1f", pWeatherData.getWindSpeed());
         mWindSpeedView.setText(wind);
 
-        // TODO: city!
+        // TODO: city! - move
         mCityNameView.setText("TEST");
 
         mDateView.setText(UnitConverter.timestampToDate(System.currentTimeMillis()));
@@ -76,12 +76,18 @@ public class ActivityActualWeather extends AppCompatActivity implements ViewActu
     @Override
     public void startActivityNextWeek()
     {
-
+        // TODO: implement
     }
 
     @Override
     public void startActivityChooseCity()
     {
+        // TODO: implement
+    }
 
+    @Override
+    public void showConnectionError()
+    {
+        // TODO: implement
     }
 }

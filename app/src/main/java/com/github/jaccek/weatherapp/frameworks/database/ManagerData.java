@@ -25,4 +25,10 @@ public class ManagerData implements IManagerData
 
         return data;
     }
+
+    @Override
+    public void getActualWeather(DataHandler pDataHandler)
+    {
+        // TODO: implement
+    }
 }
