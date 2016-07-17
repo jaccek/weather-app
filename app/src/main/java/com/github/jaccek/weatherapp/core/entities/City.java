@@ -5,4 +5,15 @@ package com.github.jaccek.weatherapp.core.entities;
  */
 public class City
 {
+    private String mName;
+
+    public String getName()
+    {
+        return mName;
+    }
+
+    public void setName(String pName)
+    {
+        mName = pName;
+    }
 }

@@ -3,12 +3,19 @@ package com.github.jaccek.weatherapp.frameworks.view.actualweather;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jaccek.weatherapp.R;
+import com.github.jaccek.weatherapp.core.entities.City;
 import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
 import com.github.jaccek.weatherapp.core.utils.UnitConverter;
+import com.github.jaccek.weatherapp.frameworks.database.ManagerData;
+import com.github.jaccek.weatherapp.frameworks.utils.WeatherTypeConverter;
+import com.github.jaccek.weatherapp.frameworks.view.choosecity.ActivityCityChooser;
+import com.github.jaccek.weatherapp.logic.database.IManagerData;
+import com.github.jaccek.weatherapp.logic.presenter.actualweather.PresenterActualWeather;
 import com.github.jaccek.weatherapp.logic.view.actualweather.IViewActualWeather;
 
 import java.util.Locale;
@@ -22,11 +29,14 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
 
     private ImageView mBackgroundImageView;
     private TextView mTemperatureView;
+    private TextView mWeatherTypeView;
     private TextView mSunriseHourView;
     private TextView mSunsetHourView;
     private TextView mWindSpeedView;
     private TextView mCityNameView;
     private TextView mDateView;
+
+    private PresenterActualWeather mPresenterActualWeather;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -36,23 +46,26 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
 
         mBackgroundImageView = (ImageView) findViewById(R.id.activity_weather_background);
         mTemperatureView = (TextView) findViewById(R.id.activity_weather_temperature);
+        mWeatherTypeView = (TextView) findViewById(R.id.activity_weather_type);
         mSunriseHourView = (TextView) findViewById(R.id.activity_weather_sunrise_hour);
         mSunsetHourView = (TextView) findViewById(R.id.activity_weather_sunset_hour);
         mWindSpeedView = (TextView) findViewById(R.id.activity_weather_wind_speed);
         mCityNameView = (TextView) findViewById(R.id.activity_weather_city);
         mDateView = (TextView) findViewById(R.id.activity_weather_date);
 
-//        IWeatherDataProvider provider = new YahooWeatherProvider();
-//        IWeatherData data;
-//        try
-//        {
-//            data = provider.getWeatherForecast();
-//            setWeatherData(data);
-//        }
-//        catch(IOException e)
-//        {
-//            e.printStackTrace();
-//        }
+        mCityNameView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View pView)
+            {
+                mPresenterActualWeather.onCityNameClicked();
+            }
+        });
+
+        // TODO: temporary creation of managerData!!!!!!!
+        IManagerData managerData = new ManagerData();
+        mPresenterActualWeather = new PresenterActualWeather(this, managerData);
+        mPresenterActualWeather.onCreate();
     }
 
     @Override
@@ -67,8 +80,7 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
         String wind = String.format(Locale.getDefault(), "%.1f", pWeatherData.getWindSpeed());
         mWindSpeedView.setText(wind);
 
-        // TODO: city! - move
-        mCityNameView.setText("TEST");
+        mWeatherTypeView.setText(WeatherTypeConverter.toString(pWeatherData.getWeatherType()));
 
         mDateView.setText(UnitConverter.timestampToDate(System.currentTimeMillis()));
     }
@@ -82,12 +94,18 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
     @Override
     public void startActivityChooseCity()
     {
-        // TODO: implement
+        ActivityCityChooser.startActivity(this);
     }
 
     @Override
     public void showConnectionError()
     {
         // TODO: implement
+    }
+
+    @Override
+    public void setCity(City pCity)
+    {
+        mCityNameView.setText(pCity.getName());
     }
 }
