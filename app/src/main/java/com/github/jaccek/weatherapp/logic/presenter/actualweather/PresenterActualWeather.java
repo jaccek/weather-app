@@ -5,6 +5,8 @@ import com.github.jaccek.weatherapp.frameworks.database.DataHandler;
 import com.github.jaccek.weatherapp.logic.database.IManagerData;
 import com.github.jaccek.weatherapp.logic.view.actualweather.IViewActualWeather;
 
+import javax.inject.Inject;
+
 /**
  * Presenter for actual weather.
  */
@@ -13,9 +15,14 @@ public class PresenterActualWeather implements IPresenterActualWeather, DataHand
     private IViewActualWeather mViewActualWeather;
     private IManagerData mManagerData;
 
-    public PresenterActualWeather(IViewActualWeather pViewActualWeather, IManagerData pManagerData)
+    @Inject
+    public PresenterActualWeather(IManagerData pManagerData)
     {
         mManagerData = pManagerData;
+    }
+
+    public void setViewActualWeather(IViewActualWeather pViewActualWeather)
+    {
         mViewActualWeather = pViewActualWeather;
     }
 

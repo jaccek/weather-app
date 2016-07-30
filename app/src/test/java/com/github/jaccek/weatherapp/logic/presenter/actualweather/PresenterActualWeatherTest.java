@@ -31,7 +31,8 @@ public class PresenterActualWeatherTest
     public void testOnCreate() throws Exception
     {
         IManagerData managerData = Mockito.mock(IManagerData.class);
-        PresenterActualWeather presenter = new PresenterActualWeather(mViewActualWeatherMock, managerData);
+        PresenterActualWeather presenter = new PresenterActualWeather(managerData);
+        presenter.setViewActualWeather(mViewActualWeatherMock);
 
         presenter.onCreate();
         verify(managerData).getActualWeather(any(DataHandler.class));
@@ -40,7 +41,8 @@ public class PresenterActualWeatherTest
     @Test
     public void testOnData() throws Exception
     {
-        PresenterActualWeather presenter = new PresenterActualWeather(mViewActualWeatherMock, null);
+        PresenterActualWeather presenter = new PresenterActualWeather(null);
+        presenter.setViewActualWeather(mViewActualWeatherMock);
 
         WeatherDataActual actualWeather = new WeatherDataActual();
         actualWeather.setTemperature(18);
@@ -55,7 +57,8 @@ public class PresenterActualWeatherTest
     @Test
     public void testOnError() throws Exception
     {
-        PresenterActualWeather presenter = new PresenterActualWeather(mViewActualWeatherMock, null);
+        PresenterActualWeather presenter = new PresenterActualWeather(null);
+        presenter.setViewActualWeather(mViewActualWeatherMock);
 
         presenter.onError();
         verify(mViewActualWeatherMock).showConnectionError();
@@ -64,7 +67,8 @@ public class PresenterActualWeatherTest
     @Test
     public void testOnNextWeekButtonClicked() throws Exception
     {
-        PresenterActualWeather presenter = new PresenterActualWeather(mViewActualWeatherMock, null);
+        PresenterActualWeather presenter = new PresenterActualWeather(null);
+        presenter.setViewActualWeather(mViewActualWeatherMock);
         presenter.onNextWeekButtonClicked();
 
         verify(mViewActualWeatherMock).startActivityNextWeek();
@@ -73,7 +77,8 @@ public class PresenterActualWeatherTest
     @Test
     public void testOnCityNameClicked() throws Exception
     {
-        PresenterActualWeather presenter = new PresenterActualWeather(mViewActualWeatherMock, null);
+        PresenterActualWeather presenter = new PresenterActualWeather(null);
+        presenter.setViewActualWeather(mViewActualWeatherMock);
         presenter.onCityNameClicked();
 
         verify(mViewActualWeatherMock).startActivityChooseCity();

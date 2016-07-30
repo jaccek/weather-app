@@ -7,18 +7,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.jaccek.weatherapp.ApplicationWeather;
 import com.github.jaccek.weatherapp.R;
 import com.github.jaccek.weatherapp.core.entities.City;
 import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
 import com.github.jaccek.weatherapp.core.utils.UnitConverter;
-import com.github.jaccek.weatherapp.frameworks.database.ManagerData;
 import com.github.jaccek.weatherapp.frameworks.utils.WeatherTypeConverter;
 import com.github.jaccek.weatherapp.frameworks.view.choosecity.ActivityCityChooser;
-import com.github.jaccek.weatherapp.logic.database.IManagerData;
 import com.github.jaccek.weatherapp.logic.presenter.actualweather.PresenterActualWeather;
 import com.github.jaccek.weatherapp.logic.view.actualweather.IViewActualWeather;
 
 import java.util.Locale;
+
+import javax.inject.Inject;
 
 /**
  * Activity showing weather data.
@@ -36,7 +37,8 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
     private TextView mCityNameView;
     private TextView mDateView;
 
-    private PresenterActualWeather mPresenterActualWeather;
+    @Inject
+    PresenterActualWeather mPresenterActualWeather;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -62,9 +64,8 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
             }
         });
 
-        // TODO: temporary creation of managerData!!!!!!!
-        IManagerData managerData = new ManagerData();
-        mPresenterActualWeather = new PresenterActualWeather(this, managerData);
+        mPresenterActualWeather = ApplicationWeather.getComponentApplication(this).getPresenterActualWeather();
+        mPresenterActualWeather.setViewActualWeather(this);
         mPresenterActualWeather.onCreate();
     }
 
