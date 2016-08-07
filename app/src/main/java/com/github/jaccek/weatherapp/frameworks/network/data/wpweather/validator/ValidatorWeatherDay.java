@@ -1,14 +1,14 @@
-package com.github.jaccek.weatherapp.frameworks.network.data.validator;
+package com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherDay;
 import com.github.jaccek.weatherapp.core.utils.HelperText;
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherDay;
 
 /**
- * Validator for {@link IWeatherDay}.
+ * Validator for {@link WpWeatherDay}.
  */
 public class ValidatorWeatherDay
 {
-    public boolean isValid(IWeatherDay pWeatherDay)
+    public boolean isValid(WpWeatherDay pWeatherDay)
     {
 //        if (pWeatherDay == null)
 //        {

@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.Calendar;
+
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
@@ -35,7 +37,7 @@ public class PresenterActualWeatherTest
         presenter.setViewActualWeather(mViewActualWeatherMock);
 
         presenter.onCreate();
-        verify(managerData).getActualWeather(any(DataHandler.class));
+        verify(managerData).getActualWeather(any(Calendar.class), any(DataHandler.class));
     }
 
     @Test

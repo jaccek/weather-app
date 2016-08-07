@@ -2,8 +2,8 @@ package com.github.jaccek.weatherapp.logic.database;
 
 import android.support.annotation.Nullable;
 
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
 import com.github.jaccek.weatherapp.frameworks.database.DataHandler;
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
 
 import java.util.Calendar;
 
@@ -13,7 +13,5 @@ import java.util.Calendar;
 public interface IManagerData
 {
     @Nullable
-    IWeatherData getWeather(Calendar pData);
-
-    void getActualWeather(DataHandler pDataHandler);
+    void getActualWeather(Calendar pActualDate, DataHandler<WeatherDataActual> pDataHandler);
 }

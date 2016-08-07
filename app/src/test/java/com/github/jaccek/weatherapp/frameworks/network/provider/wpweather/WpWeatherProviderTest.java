@@ -1,7 +1,7 @@
 package com.github.jaccek.weatherapp.frameworks.network.provider.wpweather;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherForecast;
-import com.github.jaccek.weatherapp.frameworks.network.data.validator.ValidatorWeatherForecast;
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherForecast;
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator.ValidatorWeatherForecast;
 
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ public class WpWeatherProviderTest
     public void testGetWeatherDataNonNullObject() throws Exception
     {
         WpWeatherProvider provider = new WpWeatherProvider();
-        IWeatherForecast data = provider.getWeatherForecast();
+        WpWeatherForecast data = provider.getWeatherForecast();
 
         assertNotNull(data);
     }
@@ -26,7 +26,7 @@ public class WpWeatherProviderTest
     public void testGetWeatherDataValidObject() throws Exception
     {
         WpWeatherProvider provider = new WpWeatherProvider();
-        IWeatherForecast data = provider.getWeatherForecast();
+        WpWeatherForecast data = provider.getWeatherForecast();
         ValidatorWeatherForecast validator = new ValidatorWeatherForecast();
 
         assertTrue(validator.isValid(data));

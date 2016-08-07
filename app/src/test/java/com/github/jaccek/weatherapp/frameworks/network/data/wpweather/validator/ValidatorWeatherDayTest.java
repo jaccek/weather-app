@@ -1,4 +1,4 @@
-package com.github.jaccek.weatherapp.frameworks.network.data.validator;
+package com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator;
 
 import android.support.annotation.NonNull;
 

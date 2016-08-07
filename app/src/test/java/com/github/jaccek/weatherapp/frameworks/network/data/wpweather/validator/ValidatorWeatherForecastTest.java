@@ -1,6 +1,5 @@
-package com.github.jaccek.weatherapp.frameworks.network.data.validator;
+package com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherForecast;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherForecast;
 
 import org.junit.Test;
@@ -17,7 +16,7 @@ public class ValidatorWeatherForecastTest
     public void testIsValidCorrectObject() throws Exception
     {
         ValidatorWeatherForecast validator = new ValidatorWeatherForecast();
-        IWeatherForecast forecast = new WpWeatherForecast();
+        WpWeatherForecast forecast = new WpWeatherForecast();
 
         assertTrue(validator.isValid(forecast));
     }

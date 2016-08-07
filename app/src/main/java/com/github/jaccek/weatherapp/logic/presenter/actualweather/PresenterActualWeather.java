@@ -5,6 +5,8 @@ import com.github.jaccek.weatherapp.frameworks.database.DataHandler;
 import com.github.jaccek.weatherapp.logic.database.IManagerData;
 import com.github.jaccek.weatherapp.logic.view.actualweather.IViewActualWeather;
 
+import java.util.Calendar;
+
 /**
  * Presenter for actual weather.
  */
@@ -26,7 +28,7 @@ public class PresenterActualWeather implements IPresenterActualWeather, DataHand
     @Override
     public void onCreate()
     {
-        mManagerData.getActualWeather(this);
+        mManagerData.getActualWeather(Calendar.getInstance(), this);
     }
 
     @Override

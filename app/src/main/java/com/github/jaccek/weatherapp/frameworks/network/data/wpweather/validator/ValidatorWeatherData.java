@@ -1,9 +1,9 @@
-package com.github.jaccek.weatherapp.frameworks.network.data.validator;
+package com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherData;
 
 /**
- * Validator for {@link IWeatherData}.
+ * Validator for {@link WpWeatherData}.
  */
 public class ValidatorWeatherData
 {
@@ -13,7 +13,7 @@ public class ValidatorWeatherData
      * @param pWeatherData Data to check.
      * @return True if data is valid or false if data isn't valid.
      */
-    public boolean isValid(IWeatherData pWeatherData)
+    public boolean isValid(WpWeatherData pWeatherData)
     {
 //        if (pWeatherData == null)
 //        {
@@ -23,7 +23,7 @@ public class ValidatorWeatherData
         try
         {
             // check wind speed
-            if (pWeatherData.getWindSpeed() < 0.0f)
+            if(pWeatherData.getWindSpeed() < 0.0f)
             {
                 return false;
             }
@@ -31,8 +31,8 @@ public class ValidatorWeatherData
             // only check null pointer exception
             pWeatherData.getTemperature();
 
-            if (pWeatherData.getWeatherType() == null
-                    || pWeatherData.getWeatherType() == IWeatherData.WeatherType.UNKNOWN)
+            if(pWeatherData.getWeatherType() == null
+                    || pWeatherData.getWeatherType() == WpWeatherData.WpWeatherType.UNKNOWN)
             {
                 return false;
             }

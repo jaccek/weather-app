@@ -1,6 +1,5 @@
 package com.github.jaccek.weatherapp.frameworks.network.provider.wpweather;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherForecast;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherDay;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherForecast;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.json.JsonDeserializerWpWeatherDays;
@@ -41,7 +40,7 @@ public class WpWeatherProvider implements IWeatherDataProvider
     }
 
     @Override
-    public IWeatherForecast getWeatherForecast() throws Exception
+    public WpWeatherForecast getWeatherForecast() throws Exception
     {
         Response<WpWeatherForecast> response = mConnector.getWeather(1201290).execute();
         if (response.code() != 200)

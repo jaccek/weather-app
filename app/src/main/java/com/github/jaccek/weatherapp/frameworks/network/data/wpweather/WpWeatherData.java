@@ -1,33 +1,48 @@
 package com.github.jaccek.weatherapp.frameworks.network.data.wpweather;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Weather data for 3 hours (from WP weather).
  */
-public class WpWeatherData implements IWeatherData
+public class WpWeatherData
 {
+    public enum WpWeatherType
+    {
+        SUNNY,
+        CLOUDY,
+        MOSTLY_CLOUDY,
+        FOGGY,
+        RAINY,
+        SNOW,
+        STORM,
+        UNKNOWN;
+
+        public com.github.jaccek.weatherapp.core.entities.weather.WeatherType convertWeatherType()
+        {
+            // TODO: not null
+            return null;
+        }
+    }
+
     private int mStartHour;
     private int mEndHour;
     @SerializedName("temp")
     private int mTemperature;
     @SerializedName("windSpeed")
     private float mWindSpeed;
-    private WeatherType mWeatherType;
+    private WpWeatherType mWeatherType;
 
-    @Override
-    public WeatherType getWeatherType()
+    public WpWeatherType getWeatherType()
     {
         return mWeatherType;
     }
 
-    public void setWeatherType(WeatherType pWeatherType)
+    public void setWeatherType(WpWeatherType pWeatherType)
     {
         mWeatherType = pWeatherType;
     }
 
-    @Override
     public int getTemperature()
     {
         return mTemperature;
@@ -38,7 +53,6 @@ public class WpWeatherData implements IWeatherData
         mTemperature = pTemperature;
     }
 
-    @Override
     public float getWindSpeed()
     {
         return mWindSpeed;

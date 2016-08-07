@@ -2,8 +2,6 @@ package com.github.jaccek.weatherapp.frameworks.network.data.wpweather;
 
 import android.support.annotation.Nullable;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherDay;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Calendar;
@@ -12,7 +10,7 @@ import java.util.List;
 /**
  * Weather data for one day (from WP weather).
  */
-public class WpWeatherDay implements IWeatherDay
+public class WpWeatherDay
 {
     private Calendar mDay;
     @SerializedName("sunrise")
@@ -22,21 +20,19 @@ public class WpWeatherDay implements IWeatherDay
     @SerializedName("weather")
     private List<WpWeatherData> mWeather;
 
-    @Override
     public boolean isToday()
     {
+        // TODO: implement
         return false;
     }
 
     @Nullable
-    @Override
-    public IWeatherData getWeatherData(Calendar pDate)
+    public WpWeatherData getWeatherData(Calendar pDate)
     {
         // TODO: implement
         return null;
     }
 
-    @Override
     public String getSunriseHour()
     {
         return mSunriseHour;
@@ -47,7 +43,6 @@ public class WpWeatherDay implements IWeatherDay
         mSunriseHour = pSunriseHour;
     }
 
-    @Override
     public String getSunsetHour()
     {
         return mSunsetHour;

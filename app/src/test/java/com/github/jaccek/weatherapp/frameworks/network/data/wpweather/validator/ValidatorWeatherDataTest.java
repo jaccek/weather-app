@@ -1,8 +1,7 @@
-package com.github.jaccek.weatherapp.frameworks.network.data.validator;
+package com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator;
 
 import android.support.annotation.NonNull;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherData;
 
 import org.junit.Test;
@@ -57,7 +56,7 @@ public class ValidatorWeatherDataTest
         ValidatorWeatherData validator = new ValidatorWeatherData();
         WpWeatherData data = getValidWpWeatherData();
 
-        data.setWeatherType(IWeatherData.WeatherType.UNKNOWN);
+        data.setWeatherType(WpWeatherData.WpWeatherType.UNKNOWN);
         assertFalse(validator.isValid(data));
     }
 
@@ -70,7 +69,7 @@ public class ValidatorWeatherDataTest
         data.setEndHour(9);
         data.setTemperature(12);
         data.setWindSpeed(3);
-        data.setWeatherType(IWeatherData.WeatherType.SUNNY);
+        data.setWeatherType(WpWeatherData.WpWeatherType.SUNNY);
         return data;
     }
 }

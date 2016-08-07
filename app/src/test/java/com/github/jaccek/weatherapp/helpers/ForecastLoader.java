@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,5 +30,12 @@ public class ForecastLoader
                 .getResourceAsStream("wpWeatherForecastResponse.json");
         InputStreamReader reader = new InputStreamReader(inputStream);
         return gson.fromJson(reader, WpWeatherForecast.class);
+    }
+
+    public static Calendar getDateOfWpWeatherForecast()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2016, Calendar.JULY, 9, 12, 30);
+        return calendar;
     }
 }

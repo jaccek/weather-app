@@ -2,8 +2,8 @@ package com.github.jaccek.weatherapp.frameworks.database;
 
 import android.support.annotation.Nullable;
 
-import com.github.jaccek.weatherapp.frameworks.network.data.IWeatherData;
-import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherData;
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherType;
 import com.github.jaccek.weatherapp.frameworks.network.provider.IWeatherDataProvider;
 import com.github.jaccek.weatherapp.logic.database.IManagerData;
 
@@ -23,29 +23,14 @@ public class ManagerData implements IManagerData
 
     @Override
     @Nullable
-    public IWeatherData getWeather(Calendar pData)
+    public void getActualWeather(Calendar pActualDate, DataHandler<WeatherDataActual> pDataHandler)
     {
         // TODO: temporary
-        WpWeatherData data = new WpWeatherData();
-        data.setWeatherType(IWeatherData.WeatherType.SUNNY);
+        WeatherDataActual data = new WeatherDataActual();
+        data.setWeatherType(WeatherType.SUNNY);
         data.setWindSpeed(12);
         data.setTemperature(28);
 
-        return data;
-    }
-
-    @Override
-    public void getActualWeather(DataHandler pDataHandler)
-    {
-        // TODO: implement
-        try
-        {
-            mDataProvider.getWeatherForecast();
-        }
-        catch(Exception pE)
-        {
-            pE.printStackTrace();
-        }
-        pDataHandler.onError();
+        pDataHandler.onData(data);
     }
 }
