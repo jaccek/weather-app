@@ -24,7 +24,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.github.jaccek.weatherapp.MockTestRunner"
     }
     buildTypes {
         debug {
@@ -48,14 +48,10 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
-    // Dagger 2
-    // https://github.com/google/dagger
-    compile 'com.google.dagger:dagger:2.6'
-    apt 'com.google.dagger:dagger-compiler:2.6'
-
     // Mockito
     // http://mockito.org/
     testCompile "org.mockito:mockito-core:2.0.57-beta"
+//    androidTestCompile "org.mockito:mockito-core:2.0.57-beta"
 
     // JUnit
     testCompile 'junit:junit:4.12'

@@ -2,29 +2,26 @@ package com.github.jaccek.weatherapp.frameworks.view.actualweather;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.jaccek.weatherapp.ApplicationWeather;
 import com.github.jaccek.weatherapp.R;
 import com.github.jaccek.weatherapp.core.entities.City;
 import com.github.jaccek.weatherapp.core.entities.weather.WeatherDataActual;
 import com.github.jaccek.weatherapp.core.utils.UnitConverter;
 import com.github.jaccek.weatherapp.frameworks.utils.WeatherTypeConverter;
+import com.github.jaccek.weatherapp.frameworks.view.ActivityBase;
 import com.github.jaccek.weatherapp.frameworks.view.choosecity.ActivityCityChooser;
 import com.github.jaccek.weatherapp.logic.presenter.actualweather.PresenterActualWeather;
 import com.github.jaccek.weatherapp.logic.view.actualweather.IViewActualWeather;
 
 import java.util.Locale;
 
-import javax.inject.Inject;
-
 /**
  * Activity showing weather data.
  */
-public class ActivityActualWeather extends AppCompatActivity implements IViewActualWeather
+public class ActivityActualWeather extends ActivityBase implements IViewActualWeather
 {
     private final static int LAYOUT_ID = R.layout.activity_actual_weather;
 
@@ -37,7 +34,6 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
     private TextView mCityNameView;
     private TextView mDateView;
 
-    @Inject
     PresenterActualWeather mPresenterActualWeather;
 
     @Override
@@ -64,7 +60,7 @@ public class ActivityActualWeather extends AppCompatActivity implements IViewAct
             }
         });
 
-        mPresenterActualWeather = ApplicationWeather.getComponentApplication(this).getPresenterActualWeather();
+        mPresenterActualWeather = getApplicationObject().getPresenter(this.getClass());
         mPresenterActualWeather.setViewActualWeather(this);
         mPresenterActualWeather.onCreate();
     }
