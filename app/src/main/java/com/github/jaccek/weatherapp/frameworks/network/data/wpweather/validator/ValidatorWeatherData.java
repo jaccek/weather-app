@@ -22,12 +22,6 @@ public class ValidatorWeatherData
 
         try
         {
-            // check wind speed
-            if(pWeatherData.getWindSpeed() < 0.0f)
-            {
-                return false;
-            }
-
             // only check null pointer exception
             pWeatherData.getTemperature();
 

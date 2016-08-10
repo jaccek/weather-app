@@ -11,6 +11,6 @@ import retrofit2.http.Query;
  */
 public interface IWpWeatherConnector
 {
-    @GET("cityweather")
-    Call<WpWeatherForecast> getWeather(@Query("mid") int pCityId);
+    @GET("city")
+    Call<WpWeatherForecast> getWeather(@Query("cid") int pCityId);
 }

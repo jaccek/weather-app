@@ -2,7 +2,6 @@ package com.github.jaccek.weatherapp.frameworks.network.provider.wpweather;
 
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherDay;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherForecast;
-import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.json.JsonDeserializerWpWeatherDays;
 import com.github.jaccek.weatherapp.frameworks.network.provider.IWeatherDataProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,14 +20,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class WpWeatherProvider implements IWeatherDataProvider
 {
-    private static final String BASE_URL = "http://pogoda.wp.pl/app/";
+    private static final String BASE_URL = "http://pogoda.wp.pl/api/o2/mobile/";
     private final IWpWeatherConnector mConnector;
 
     public WpWeatherProvider()
     {
         Type dayListType = new TypeToken<List<WpWeatherDay>>() {}.getType();
         Gson gson = new GsonBuilder()
-                .registerTypeAdapter(dayListType, new JsonDeserializerWpWeatherDays())
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()

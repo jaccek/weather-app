@@ -6,6 +6,8 @@ import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherD
 
 import org.junit.Test;
 
+import java.util.Calendar;
+
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
 
@@ -28,16 +30,6 @@ public class ValidatorWeatherDataTest
     {
         ValidatorWeatherData validator = new ValidatorWeatherData();
         assertFalse(validator.isValid(null));
-    }
-
-    @Test
-    public void isValidTestNegativeWindSpeed() throws Exception
-    {
-        ValidatorWeatherData validator = new ValidatorWeatherData();
-        WpWeatherData data = getValidWpWeatherData();
-
-        data.setWindSpeed(-0.1f);
-        assertFalse(validator.isValid(data));
     }
 
     @Test
@@ -65,10 +57,9 @@ public class ValidatorWeatherDataTest
     {
         WpWeatherData data = new WpWeatherData();
 
-        data.setStartHour(6);
-        data.setEndHour(9);
+        data.setTime(Calendar.getInstance());
         data.setTemperature(12);
-        data.setWindSpeed(3);
+        data.setPressure(1024);
         data.setWeatherType(WpWeatherData.WpWeatherType.SUNNY);
         return data;
     }

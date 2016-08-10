@@ -1,6 +1,10 @@
 package com.github.jaccek.weatherapp.frameworks.network.data.wpweather;
 
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.json.JsonAdapterTimestampToCalendar;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Calendar;
 
 /**
  * Weather data for 3 hours (from WP weather).
@@ -25,12 +29,14 @@ public class WpWeatherData
         }
     }
 
-    private int mStartHour;
-    private int mEndHour;
-    @SerializedName("temp")
+    @SerializedName("time")
+    @JsonAdapter(JsonAdapterTimestampToCalendar.class)
+    private Calendar mTime;
+    @SerializedName("temperature")
     private int mTemperature;
-    @SerializedName("windSpeed")
-    private float mWindSpeed;
+    @SerializedName("pressure")
+    private int mPressure;
+//    @SerializedName("icon")
     private WpWeatherType mWeatherType;
 
     public WpWeatherType getWeatherType()
@@ -53,33 +59,23 @@ public class WpWeatherData
         mTemperature = pTemperature;
     }
 
-    public float getWindSpeed()
+    public Calendar getTime()
     {
-        return mWindSpeed;
+        return mTime;
     }
 
-    public void setWindSpeed(float pWindSpeed)
+    public void setTime(Calendar pTime)
     {
-        mWindSpeed = pWindSpeed;
+        mTime = pTime;
     }
 
-    public int getStartHour()
+    public int getPressure()
     {
-        return mStartHour;
+        return mPressure;
     }
 
-    public void setStartHour(int pStartHour)
+    public void setPressure(int pPressure)
     {
-        mStartHour = pStartHour;
-    }
-
-    public int getEndHour()
-    {
-        return mEndHour;
-    }
-
-    public void setEndHour(int pEndHour)
-    {
-        mEndHour = pEndHour;
+        mPressure = pPressure;
     }
 }

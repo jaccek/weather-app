@@ -53,7 +53,6 @@ public class ManagerDataTest
                 assertEquals(weatherDay.getSunriseHour(), pData.getSunriseHour());
                 assertEquals(weatherDay.getSunsetHour(), pData.getSunsetHour());
                 assertEquals(weatherData.getTemperature(), pData.getTemperature(), 0.001f);
-                assertEquals(weatherData.getWindSpeed(), pData.getWindSpeed(), 0.001f);
             }
 
             @Override
