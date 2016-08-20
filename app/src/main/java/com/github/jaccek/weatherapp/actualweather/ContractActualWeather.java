@@ -6,9 +6,9 @@ import com.github.jaccek.weatherapp.actualweather.data.City;
 /**
  * Created by jacek on 8/20/16.
  */
-public class ContractActualWeather
+public interface ContractActualWeather
 {
-    public interface View
+    interface View
     {
         void showCity(City pCity);
         void showWeather(ActualWeatherData pWeatherData);
@@ -16,32 +16,33 @@ public class ContractActualWeather
         void showConnectionError();
     }
 
-    public interface Interactor
+    interface Interactor
     {
         void requestUserCity(PresenterForInteractor pPresenter);
         void requestActualWeatherData(PresenterForInteractor pPresenter, City pCity);
     }
 
-    public interface Router
+    interface Router
     {
         void startNextDaysActivity();
         void startChangeCityActivity(PresenterForRouter pPresenter);
     }
 
-    public interface Presenter
+    interface Presenter
     {
         void onCreate();
         void onCityClicked();
         void onNextDaysButtonClicked();
     }
 
-    public interface PresenterForInteractor
+    interface PresenterForInteractor
     {
+        void onCity(City pCity);
         void onActualWeatherData(ActualWeatherData pWeatherData);
         void onConnectionError();
     }
 
-    public interface PresenterForRouter
+    interface PresenterForRouter
     {
         void onCityChanged(City pCity);
     }

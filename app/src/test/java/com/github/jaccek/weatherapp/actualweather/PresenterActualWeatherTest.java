@@ -38,6 +38,7 @@ public class PresenterActualWeatherTest
     public void testOnCreate()
     {
         mPresenter.onCreate();
+
         verify(mView).showLoader();
         verify(mInteractor).requestUserCity(mPresenter);
     }
@@ -61,9 +62,22 @@ public class PresenterActualWeatherTest
     {
         City city = new City();
         mPresenter.onCityChanged(city);
-        verify(mView).showCity(city);
+        verifyOnCity(city);
+    }
+
+    @Test
+    public void testOnCity()
+    {
+        City city = new City();
+        mPresenter.onCity(city);
+        verifyOnCity(city);
+    }
+
+    private void verifyOnCity(City pCity)
+    {
+        verify(mView).showCity(pCity);
         verify(mView).showLoader();
-        verify(mInteractor).requestActualWeatherData(mPresenter, city);
+        verify(mInteractor).requestActualWeatherData(mPresenter, pCity);
     }
 
     @Test

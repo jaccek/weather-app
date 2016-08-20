@@ -4,7 +4,7 @@ import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
 
 /**
- * Created by jacek on 8/20/16.
+ * Responsibility: merge all components of actual weather module
  */
 public class PresenterActualWeather implements
         ContractActualWeather.Presenter,
@@ -50,6 +50,12 @@ public class PresenterActualWeather implements
         mView.showCity(pCity);
         mView.showLoader();
         mInteractor.requestActualWeatherData(this, pCity);
+    }
+
+    @Override
+    public void onCity(City pCity)
+    {
+        onCityChanged(pCity);
     }
 
     @Override
