@@ -1,6 +1,5 @@
 package com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator;
 
-import com.github.jaccek.weatherapp.core.utils.HelperText;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherDay;
 
 /**
@@ -17,12 +16,12 @@ public class ValidatorWeatherDay
 
         try
         {
-            if(HelperText.isStringEmpty(pWeatherDay.getSunriseHour()))
+            if(pWeatherDay.getSunriseHour() == null)
             {
                 return false;
             }
 
-            if(HelperText.isStringEmpty(pWeatherDay.getSunsetHour()))
+            if(pWeatherDay.getSunsetHour() == null)
             {
                 return false;
             }

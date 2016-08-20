@@ -1,5 +1,6 @@
 package com.github.jaccek.weatherapp.frameworks.network.data.wpweather;
 
+import com.github.jaccek.weatherapp.core.entities.weather.WeatherType;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.json.JsonAdapterTimestampToCalendar;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -13,19 +14,54 @@ public class WpWeatherData
 {
     public enum WpWeatherType
     {
+        // TODO: day / night
+        // TODO: śnieg z deszczem
+
+        @SerializedName(value = "1d", alternate = "1n")
         SUNNY,
+        @SerializedName(value = "2d", alternate = "2n")
         CLOUDY,
+        @SerializedName(value = "4", alternate = { "3d", "3n" })
         MOSTLY_CLOUDY,
+        @SerializedName("13")
         FOGGY,
+        @SerializedName(value = "6", alternate = { "5d", "5n" })
         RAINY,
+        @SerializedName(value = "8", alternate = { "11d", "11n", "12" })
         SNOW,
+        @SerializedName(value = "7", alternate = { "9d", "9n", "10" })
         STORM,
         UNKNOWN;
 
-        public com.github.jaccek.weatherapp.core.entities.weather.WeatherType convertWeatherType()
+        public WeatherType convertWeatherType()
         {
-            // TODO: not null
-            return null;
+            switch(this)
+            {
+                case SUNNY:
+                    return WeatherType.SUNNY;
+
+                case CLOUDY:
+                    return WeatherType.CLOUDY;
+
+                case MOSTLY_CLOUDY:
+                    return WeatherType.MOSTLY_CLOUDY;
+
+                case FOGGY:
+                    return WeatherType.FOGGY;
+
+                case RAINY:
+                    return WeatherType.RAINY;
+
+                case SNOW:
+                    return WeatherType.SNOW;
+
+                case STORM:
+                    return WeatherType.STORM;
+
+                case UNKNOWN:
+                default:
+                    return WeatherType.UNKNOWN;
+            }
         }
     }
 
@@ -36,7 +72,7 @@ public class WpWeatherData
     private int mTemperature;
     @SerializedName("pressure")
     private int mPressure;
-//    @SerializedName("icon")
+    @SerializedName("icon")
     private WpWeatherType mWeatherType;
 
     public WpWeatherType getWeatherType()

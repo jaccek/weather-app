@@ -26,29 +26,31 @@ public class ManagerDataTest
 {
     private ManagerData mManagerData;
     private IWeatherDataProvider mDataProvider;
+    private WpWeatherForecast mWeatherForecast;
+    private Calendar mForecastDay;
 
     @Before
     public void init()
     {
         mDataProvider = Mockito.mock(IWeatherDataProvider.class);
         mManagerData = new ManagerData(mDataProvider);
+
+        mWeatherForecast = ForecastLoader.getWpWeatherForecast();
+        mForecastDay = ForecastLoader.getDateOfWpWeatherForecast();
     }
 
     @Test
     public void getWeatherTestCorrectData() throws Exception
     {
-        final WpWeatherForecast wpWeatherForecast = ForecastLoader.getWpWeatherForecast();
-        final Calendar calendar = ForecastLoader.getDateOfWpWeatherForecast();
+        when(mDataProvider.getWeatherForecast()).thenReturn(mWeatherForecast);
 
-        when(mDataProvider.getWeatherForecast()).thenReturn(wpWeatherForecast);
-
-        mManagerData.getActualWeather(calendar, new DataHandler<WeatherDataActual>()
+        mManagerData.getActualWeatherInBackground(mForecastDay, new DataHandler<WeatherDataActual>()
         {
             @Override
             public void onData(WeatherDataActual pData)
             {
-                WpWeatherDay weatherDay = wpWeatherForecast.getWeatherDay(calendar);
-                WpWeatherData weatherData = weatherDay.getWeatherData(calendar);
+                WpWeatherDay weatherDay = mWeatherForecast.getWeatherDay(mForecastDay);
+                WpWeatherData weatherData = weatherDay.getWeatherData(mForecastDay);
                 assertEquals(weatherData.getWeatherType().convertWeatherType(), pData.getWeatherType());
                 assertEquals(weatherDay.getSunriseHour(), pData.getSunriseHour());
                 assertEquals(weatherDay.getSunsetHour(), pData.getSunsetHour());
@@ -67,15 +69,11 @@ public class ManagerDataTest
     public void getWeatherTestCallingCallbacks() throws Exception
     {
         DataHandler<WeatherDataActual> handlerMock = Mockito.mock(DataHandler.class);
-        WpWeatherForecast wpWeatherForecast = ForecastLoader.getWpWeatherForecast();
-        Calendar calendar = ForecastLoader.getDateOfWpWeatherForecast();
+        when(mDataProvider.getWeatherForecast()).thenReturn(mWeatherForecast);
 
-        when(mDataProvider.getWeatherForecast()).thenReturn(wpWeatherForecast);
-
-        mManagerData.getActualWeather(calendar, handlerMock);
+        mManagerData.getActualWeather(mForecastDay, handlerMock);
 
         Thread.sleep(100);
-
         Method onDataMethod = DataHandler.class.getMethod("onData", Object.class);
         Method onErrorMethod = DataHandler.class.getMethod("onError");
         int invocationCounter = 0;

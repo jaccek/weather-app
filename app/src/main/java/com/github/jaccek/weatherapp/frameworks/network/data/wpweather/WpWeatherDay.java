@@ -2,7 +2,9 @@ package com.github.jaccek.weatherapp.frameworks.network.data.wpweather;
 
 import android.support.annotation.Nullable;
 
+import com.github.jaccek.weatherapp.core.entities.Hour;
 import com.github.jaccek.weatherapp.core.utils.HelperCalendar;
+import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.json.JsonAdapterStringToHour;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.json.JsonAdapterTimestampToCalendar;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -19,9 +21,11 @@ public class WpWeatherDay
     @JsonAdapter(JsonAdapterTimestampToCalendar.class)
     private Calendar mDay;
     @SerializedName("sunrise")
-    private String mSunriseHour;
+    @JsonAdapter(JsonAdapterStringToHour.class)
+    private Hour mSunriseHour;
     @SerializedName("sunset")
-    private String mSunsetHour;
+    @JsonAdapter(JsonAdapterStringToHour.class)
+    private Hour mSunsetHour;
     @SerializedName("timeOfDay")
     private List<WpWeatherData> mWeather;
 
@@ -62,22 +66,22 @@ public class WpWeatherDay
         return mWeather.get(closestData);
     }
 
-    public String getSunriseHour()
+    public Hour getSunriseHour()
     {
         return mSunriseHour;
     }
 
-    public void setSunriseHour(String pSunriseHour)
+    public void setSunriseHour(Hour pSunriseHour)
     {
         mSunriseHour = pSunriseHour;
     }
 
-    public String getSunsetHour()
+    public Hour getSunsetHour()
     {
         return mSunsetHour;
     }
 
-    public void setSunsetHour(String pSunsetHour)
+    public void setSunsetHour(Hour pSunsetHour)
     {
         mSunsetHour = pSunsetHour;
     }

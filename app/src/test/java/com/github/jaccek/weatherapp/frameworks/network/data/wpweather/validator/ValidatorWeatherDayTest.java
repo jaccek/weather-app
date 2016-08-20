@@ -2,8 +2,10 @@ package com.github.jaccek.weatherapp.frameworks.network.data.wpweather.validator
 
 import android.support.annotation.NonNull;
 
+import com.github.jaccek.weatherapp.core.entities.Hour;
 import com.github.jaccek.weatherapp.frameworks.network.data.wpweather.WpWeatherDay;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
@@ -14,69 +16,62 @@ import static org.junit.Assert.assertTrue;
  */
 public class ValidatorWeatherDayTest
 {
+    ValidatorWeatherDay mValidator = new ValidatorWeatherDay();
+    WpWeatherDay mWeatherDay = getValidWpWeatherDay();
+
+    @Before
+    public void init()
+    {
+        mValidator = new ValidatorWeatherDay();
+        mWeatherDay = getValidWpWeatherDay();
+    }
+
     @Test
     public void isValidTestValidObject() throws Exception
     {
-        ValidatorWeatherDay validator = new ValidatorWeatherDay();
-        WpWeatherDay weatherDay = getValidWpWeatherDay();
-
-        assertTrue(validator.isValid(weatherDay));
-
+        assertTrue(mValidator.isValid(mWeatherDay));
     }
 
     @Test
     public void isValidTestNullObject() throws Exception
     {
-        ValidatorWeatherDay validator = new ValidatorWeatherDay();
-        assertFalse(validator.isValid(null));
+        assertFalse(mValidator.isValid(null));
     }
 
     @Test
     public void isValidTestNullSunrise() throws Exception
     {
-        ValidatorWeatherDay validator = new ValidatorWeatherDay();
-        WpWeatherDay weatherDay = getValidWpWeatherDay();
-
-        weatherDay.setSunriseHour(null);
-        assertFalse(validator.isValid(weatherDay));
+        mWeatherDay.setSunriseHour(null);
+        assertFalse(mValidator.isValid(mWeatherDay));
     }
 
     @Test
     public void isValidTestEmptySunrise() throws Exception
     {
-        ValidatorWeatherDay validator = new ValidatorWeatherDay();
-        WpWeatherDay weatherDay = getValidWpWeatherDay();
-
-        weatherDay.setSunriseHour("");
-        assertFalse(validator.isValid(weatherDay));
+        mWeatherDay.setSunriseHour(null);
+        assertFalse(mValidator.isValid(mWeatherDay));
     }
 
     @Test
     public void isValidTestNullSunset() throws Exception
     {
-        ValidatorWeatherDay validator = new ValidatorWeatherDay();
-        WpWeatherDay weatherDay = getValidWpWeatherDay();
-
-        weatherDay.setSunsetHour(null);
-        assertFalse(validator.isValid(weatherDay));
+        mWeatherDay.setSunsetHour(null);
+        assertFalse(mValidator.isValid(mWeatherDay));
     }
 
     @Test
     public void isValidTestEmptySunset() throws Exception
     {
-        ValidatorWeatherDay validator = new ValidatorWeatherDay();
-        WpWeatherDay weatherDay = getValidWpWeatherDay();
-
-        weatherDay.setSunsetHour("");
-        assertFalse(validator.isValid(weatherDay));
+        mWeatherDay.setSunsetHour(null);
+        assertFalse(mValidator.isValid(mWeatherDay));
     }
 
     @NonNull
     public static WpWeatherDay getValidWpWeatherDay()
     {
         WpWeatherDay weatherDay = new WpWeatherDay();
-        weatherDay.setSunriseHour("9:23");
-        weatherDay.setSunsetHour("20:45");
+        weatherDay.setSunriseHour(new Hour(9, 23));
+        weatherDay.setSunsetHour(new Hour(20, 45));
 
         return weatherDay;
     }
