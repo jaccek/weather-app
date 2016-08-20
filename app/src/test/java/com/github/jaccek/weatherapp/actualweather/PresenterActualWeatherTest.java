@@ -1,5 +1,8 @@
 package com.github.jaccek.weatherapp.actualweather;
 
+import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
+import com.github.jaccek.weatherapp.actualweather.data.City;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -16,7 +19,11 @@ public class PresenterActualWeatherTest
 {
     PresenterActualWeather mPresenter;
     @Mock
+    ContractActualWeather.View mView;
+    @Mock
     ContractActualWeather.Router mRouter;
+    @Mock
+    ContractActualWeather.Interactor mInteractor;
 
     @Rule
     public MockitoRule mMockitoRule = MockitoJUnit.rule();
@@ -24,7 +31,15 @@ public class PresenterActualWeatherTest
     @Before
     public void init()
     {
-        mPresenter = new PresenterActualWeather(mRouter);
+        mPresenter = new PresenterActualWeather(mView, mRouter, mInteractor);
+    }
+
+    @Test
+    public void testOnCreate()
+    {
+        mPresenter.onCreate();
+        verify(mView).showLoader();
+        verify(mInteractor).requestUserCity(mPresenter);
     }
 
     @Test
@@ -32,5 +47,37 @@ public class PresenterActualWeatherTest
     {
         mPresenter.onCityClicked();
         verify(mRouter).startChangeCityActivity(mPresenter);
+    }
+
+    @Test
+    public void testOnNextDaysButtonClicked()
+    {
+        mPresenter.onNextDaysButtonClicked();
+        verify(mRouter).startNextDaysActivity();
+    }
+
+    @Test
+    public void testOnCityChanged()
+    {
+        City city = new City();
+        mPresenter.onCityChanged(city);
+        verify(mView).showCity(city);
+        verify(mView).showLoader();
+        verify(mInteractor).requestActualWeatherData(mPresenter, city);
+    }
+
+    @Test
+    public void testOnActualWeatherData()
+    {
+        ActualWeatherData data = new ActualWeatherData();
+        mPresenter.onActualWeatherData(data);
+        verify(mView).showWeather(data);
+    }
+
+    @Test
+    public void testOnConnectionError()
+    {
+        mPresenter.onConnectionError();
+        verify(mView).showConnectionError();
     }
 }

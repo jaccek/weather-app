@@ -10,6 +10,7 @@ public class ContractActualWeather
 {
     public interface View
     {
+        void showCity(City pCity);
         void showWeather(ActualWeatherData pWeatherData);
         void showLoader();
         void showConnectionError();
@@ -29,6 +30,7 @@ public class ContractActualWeather
 
     public interface Presenter
     {
+        void onCreate();
         void onCityClicked();
         void onNextDaysButtonClicked();
     }
