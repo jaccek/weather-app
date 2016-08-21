@@ -2,11 +2,11 @@ package com.github.jaccek.weatherapp.actualweather.interactor;
 
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
-import com.github.jaccek.weatherapp.actualweather.data.converter.ConverterActualWeather;
-import com.github.jaccek.weatherapp.actualweather.data.converter.ConverterCity;
+import com.github.jaccek.weatherapp.network.data.converter.ConverterActualWeather;
+import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
 import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
-import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawCity;
-import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.data.RawCity;
+import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 

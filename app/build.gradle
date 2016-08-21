@@ -15,13 +15,13 @@ repositories {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "com.github.jaccek.weatherapp"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "com.github.jaccek.weatherapp.MockTestRunner"
@@ -41,7 +41,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
 
     // Retrofit
     // http://square.github.io/retrofit/
@@ -50,21 +50,13 @@ dependencies {
 
     // Mockito
     // http://mockito.org/
-    testCompile "org.mockito:mockito-core:2.0.57-beta"
-//    androidTestCompile "org.mockito:mockito-core:2.0.57-beta"
+    testCompile "org.mockito:mockito-core:2.0.110-beta"
 
     // JUnit
     testCompile 'junit:junit:4.12'
 
     // Espresso
-    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'com.android.support.test:runner:0.5'
+//    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
+//    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+//    androidTestCompile 'com.android.support.test:runner:0.5'
 }
-
-//task copyResourcesToClasses(type: Copy) {
-//    from "${projectDir}/src/test/resources"
-//    into "${buildDir}/intermediates/classes/test/debug/resources"
-//}
-//
-//assembleDebug.dependsOn(copyResourcesToClasses)

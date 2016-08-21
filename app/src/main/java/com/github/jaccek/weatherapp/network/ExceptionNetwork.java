@@ -9,4 +9,14 @@ public class ExceptionNetwork extends Exception
     {
         super(throwable);
     }
+
+    public ExceptionNetwork(int pHttpResponseCode)
+    {
+        super("Http response code:" + pHttpResponseCode);
+    }
+
+    public ExceptionNetwork(String pMessage)
+    {
+        super(pMessage);
+    }
 }

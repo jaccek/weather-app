@@ -1,7 +1,7 @@
-package com.github.jaccek.weatherapp.actualweather.data.converter;
+package com.github.jaccek.weatherapp.network.data.converter;
 
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
-import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 
 /**
  * Created by jacek on 8/21/16.

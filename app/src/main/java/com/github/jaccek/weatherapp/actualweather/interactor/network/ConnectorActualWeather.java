@@ -1,7 +1,7 @@
 package com.github.jaccek.weatherapp.actualweather.interactor.network;
 
-import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawCity;
-import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.data.RawCity;
+import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 
 /**
