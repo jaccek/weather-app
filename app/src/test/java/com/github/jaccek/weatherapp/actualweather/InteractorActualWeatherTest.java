@@ -1,5 +1,6 @@
 package com.github.jaccek.weatherapp.actualweather;
 
+import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
 import com.github.jaccek.weatherapp.actualweather.interactor.DataCollectorActualWeather;
 import com.github.jaccek.weatherapp.actualweather.interactor.InteractorActualWeather;
@@ -70,6 +71,43 @@ public class InteractorActualWeatherTest
         mInteractor.requestUserCity(mPresenter);
 
         verify(mDataCollector).getUserCity();
+        verify(mPresenter).onConnectionError();
+    }
+
+    @Test
+    public void testRequestActualWeatherDataSuccess() throws Exception
+    {
+        City city = new City();
+        ActualWeatherData weatherData = new ActualWeatherData();
+        when(mDataCollector.getActualWeatherData(city)).thenReturn(weatherData);
+
+        mInteractor.requestActualWeatherData(mPresenter, city);
+
+        verify(mDataCollector).getActualWeatherData(city);
+        verify(mPresenter).onActualWeatherData(weatherData);
+    }
+
+    @Test
+    public void testRequestActualWeatherDataFailDownloading() throws Exception
+    {
+        City city = new City();
+        when(mDataCollector.getActualWeatherData(city)).thenThrow(ExceptionNetwork.class);
+
+        mInteractor.requestActualWeatherData(mPresenter, city);
+
+        verify(mDataCollector).getActualWeatherData(city);
+        verify(mPresenter).onConnectionError();
+    }
+
+    @Test
+    public void testRequestActualWeatherDataFailConversion() throws Exception
+    {
+        City city = new City();
+        when(mDataCollector.getActualWeatherData(city)).thenThrow(ExceptionConversion.class);
+
+        mInteractor.requestActualWeatherData(mPresenter, city);
+
+        verify(mDataCollector).getActualWeatherData(city);
         verify(mPresenter).onConnectionError();
     }
 
