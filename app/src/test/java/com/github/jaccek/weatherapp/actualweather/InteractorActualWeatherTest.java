@@ -15,6 +15,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -38,6 +41,16 @@ public class InteractorActualWeatherTest
     {
         mThreadRunner = new ThreadRunnerMocked();
         mInteractor = new InteractorActualWeather(mThreadRunner, mDataCollector);
+
+        // prevent printing exception log running line:
+        // when(mDataCollector.getUserCity()).thenThrow(ExceptionNetwork.class);
+        System.setErr(new PrintStream(new OutputStream()
+        {
+            @Override
+            public void write(int i)
+            {
+            }
+        }));
     }
 
     @Test

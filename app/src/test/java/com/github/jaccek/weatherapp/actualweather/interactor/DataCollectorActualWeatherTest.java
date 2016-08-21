@@ -1,9 +1,12 @@
 package com.github.jaccek.weatherapp.actualweather.interactor;
 
+import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
+import com.github.jaccek.weatherapp.actualweather.data.converter.ConverterActualWeather;
 import com.github.jaccek.weatherapp.actualweather.data.converter.ConverterCity;
 import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
 import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawCity;
+import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 
@@ -28,7 +31,9 @@ public class DataCollectorActualWeatherTest
     @Mock
     ConnectorActualWeather mConnector;
     @Mock
-    ConverterCity mConverter;
+    ConverterCity mConverterCity;
+    @Mock
+    ConverterActualWeather mConverterActualWeather;
 
     @Rule
     public MockitoRule mMockitoRule = MockitoJUnit.rule();
@@ -36,7 +41,7 @@ public class DataCollectorActualWeatherTest
     @Before
     public void init()
     {
-        mDataCollector = new DataCollectorActualWeather(mConnector, mConverter);
+        mDataCollector = new DataCollectorActualWeather(mConnector, mConverterCity, mConverterActualWeather);
     }
 
     @Test
@@ -45,13 +50,13 @@ public class DataCollectorActualWeatherTest
         City city = new City();
         RawCity rawCity = new RawCity();
         when(mConnector.downloadCity(anyInt())).thenReturn(rawCity);
-        when(mConverter.convert(rawCity)).thenReturn(city);
+        when(mConverterCity.convert(rawCity)).thenReturn(city);
 
         City returnedCity = mDataCollector.getUserCity();
 
         assertEquals(city, returnedCity);
         verify(mConnector).downloadCity(anyInt());  // TODO: change anyInt() to concrete city id
-        verify(mConverter).convert(rawCity);
+        verify(mConverterCity).convert(rawCity);
     }
 
     @Test(expected = ExceptionNetwork.class)
@@ -66,8 +71,50 @@ public class DataCollectorActualWeatherTest
     {
         RawCity rawCity = new RawCity();
         when(mConnector.downloadCity(anyInt())).thenReturn(rawCity);
-        when(mConverter.convert(rawCity)).thenThrow(ExceptionConversion.class);
+        when(mConverterCity.convert(rawCity)).thenThrow(ExceptionConversion.class);
 
         mDataCollector.getUserCity();
+    }
+
+    @Test
+    public void testRequestActualWeatherDataSuccess() throws Exception
+    {
+        int cityId = 124;
+        City city = new City();
+        city.setId(cityId);
+        RawWeatherData rawWeather = new RawWeatherData();
+        ActualWeatherData actualWeather = new ActualWeatherData();
+        when(mConnector.downloadWeatherData(cityId)).thenReturn(rawWeather);
+        when(mConverterActualWeather.convert(rawWeather)).thenReturn(actualWeather);
+
+        ActualWeatherData returnedWeather = mDataCollector.getActualWeatherData(city);
+
+        assertEquals(actualWeather, returnedWeather);
+        verify(mConnector).downloadWeatherData(cityId);
+        verify(mConverterActualWeather).convert(rawWeather);
+    }
+
+    @Test(expected = ExceptionNetwork.class)
+    public void testRequestActualWeatherDataFailDownloading() throws Exception
+    {
+        int cityId = 124;
+        City city = new City();
+        city.setId(cityId);
+        when(mConnector.downloadWeatherData(cityId)).thenThrow(ExceptionNetwork.class);
+
+        mDataCollector.getActualWeatherData(city);
+    }
+
+    @Test(expected = ExceptionConversion.class)
+    public void testRequestActualWeatherDataFailConversion() throws Exception
+    {
+        int cityId = 124;
+        City city = new City();
+        city.setId(cityId);
+        RawWeatherData rawWeather = new RawWeatherData();
+        when(mConnector.downloadWeatherData(cityId)).thenReturn(rawWeather);
+        when(mConverterActualWeather.convert(rawWeather)).thenThrow(ExceptionConversion.class);
+
+        mDataCollector.getActualWeatherData(city);
     }
 }

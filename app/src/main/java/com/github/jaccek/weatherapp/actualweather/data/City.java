@@ -5,4 +5,15 @@ package com.github.jaccek.weatherapp.actualweather.data;
  */
 public class City
 {
+    private int mId;
+
+    public int getId()
+    {
+        return mId;
+    }
+
+    public void setId(int pId)
+    {
+        mId = pId;
+    }
 }

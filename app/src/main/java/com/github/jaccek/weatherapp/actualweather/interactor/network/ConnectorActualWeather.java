@@ -1,6 +1,7 @@
 package com.github.jaccek.weatherapp.actualweather.interactor.network;
 
 import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawCity;
+import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 
 /**
@@ -9,4 +10,6 @@ import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 public interface ConnectorActualWeather
 {
     RawCity downloadCity(int pCityId) throws ExceptionNetwork;
+
+    RawWeatherData downloadWeatherData(int pId);
 }

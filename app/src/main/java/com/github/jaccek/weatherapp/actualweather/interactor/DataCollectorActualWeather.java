@@ -2,9 +2,11 @@ package com.github.jaccek.weatherapp.actualweather.interactor;
 
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
+import com.github.jaccek.weatherapp.actualweather.data.converter.ConverterActualWeather;
 import com.github.jaccek.weatherapp.actualweather.data.converter.ConverterCity;
 import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
 import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawCity;
+import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 
@@ -16,24 +18,28 @@ import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 public class DataCollectorActualWeather
 {
     private ConnectorActualWeather mConnector;
-    private ConverterCity mConverter;
+    private ConverterCity mConverterCity;
+    private ConverterActualWeather mConverterActualWeather;
 
-    public DataCollectorActualWeather(ConnectorActualWeather pConnector, ConverterCity pConverter)
+    public DataCollectorActualWeather(ConnectorActualWeather pConnector,
+                                      ConverterCity pConverter,
+                                      ConverterActualWeather pConverterActualWeather)
     {
         mConnector = pConnector;
-        mConverter = pConverter;
+        mConverterCity = pConverter;
+        mConverterActualWeather = pConverterActualWeather;
     }
 
     public City getUserCity() throws ExceptionNetwork, ExceptionConversion
     {
         // TODO: city id of Warsaw - change it
         RawCity rawCity = mConnector.downloadCity(43116);
-        return mConverter.convert(rawCity);
+        return mConverterCity.convert(rawCity);
     }
 
     public ActualWeatherData getActualWeatherData(City pCity) throws ExceptionNetwork, ExceptionConversion
     {
-        // TODO: implement
-        return null;
+        RawWeatherData rawWeather = mConnector.downloadWeatherData(pCity.getId());
+        return mConverterActualWeather.convert(rawWeather);
     }
 }
