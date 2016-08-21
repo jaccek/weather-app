@@ -1,10 +1,8 @@
 package com.github.jaccek.weatherapp.actualweather;
 
 import com.github.jaccek.weatherapp.actualweather.data.City;
-import com.github.jaccek.weatherapp.actualweather.data.converter.ConverterCity;
+import com.github.jaccek.weatherapp.actualweather.interactor.DataCollectorActualWeather;
 import com.github.jaccek.weatherapp.actualweather.interactor.InteractorActualWeather;
-import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
-import com.github.jaccek.weatherapp.actualweather.interactor.network.data.RawCity;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 import com.github.jaccek.weatherapp.network.ThreadRunnerStrategy;
@@ -16,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -30,9 +27,7 @@ public class InteractorActualWeatherTest
     @Mock
     ContractActualWeather.PresenterForInteractor mPresenter;
     @Mock
-    ConnectorActualWeather mConnector;
-    @Mock
-    ConverterCity mConverter;
+    DataCollectorActualWeather mDataCollector;
 
     @Rule
     public MockitoRule mMockitoRule = MockitoJUnit.rule();
@@ -41,46 +36,40 @@ public class InteractorActualWeatherTest
     public void init()
     {
         mThreadRunner = new ThreadRunnerMocked();
-        mInteractor = new InteractorActualWeather(mThreadRunner, mConnector, mConverter);
+        mInteractor = new InteractorActualWeather(mThreadRunner, mDataCollector);
     }
 
     @Test
     public void testRequestUserCitySuccess() throws Exception
     {
         City city = new City();
-        RawCity rawCity = new RawCity();
-        when(mConnector.downloadCity(anyInt())).thenReturn(rawCity);
-        when(mConverter.convert(rawCity)).thenReturn(city);
+        when(mDataCollector.getUserCity()).thenReturn(city);
 
         mInteractor.requestUserCity(mPresenter);
 
-        verify(mConnector).downloadCity(anyInt());  // TODO: change anyInt() to concrete city id
-        verify(mConverter).convert(rawCity);
+        verify(mDataCollector).getUserCity();
         verify(mPresenter).onCity(city);
     }
 
     @Test
     public void testRequestUserCityFailDownloading() throws Exception
     {
-        when(mConnector.downloadCity(anyInt())).thenThrow(ExceptionNetwork.class);
+        when(mDataCollector.getUserCity()).thenThrow(ExceptionNetwork.class);
 
         mInteractor.requestUserCity(mPresenter);
 
-        verify(mConnector).downloadCity(anyInt());  // TODO: change anyInt() to concrete city id
+        verify(mDataCollector).getUserCity();
         verify(mPresenter).onConnectionError();
     }
 
     @Test
     public void testRequestUserCityFailConversion() throws Exception
     {
-        RawCity rawCity = new RawCity();
-        when(mConnector.downloadCity(anyInt())).thenReturn(rawCity);
-        when(mConverter.convert(rawCity)).thenThrow(ExceptionConversion.class);
+        when(mDataCollector.getUserCity()).thenThrow(ExceptionConversion.class);
 
         mInteractor.requestUserCity(mPresenter);
 
-        verify(mConnector).downloadCity(anyInt());  // TODO: change anyInt() to concrete city id
-        verify(mConverter).convert(rawCity);
+        verify(mDataCollector).getUserCity();
         verify(mPresenter).onConnectionError();
     }
 
