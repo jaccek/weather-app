@@ -8,7 +8,9 @@ import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 
 /**
- * Created by jacek on 8/21/16.
+ * Responsibility: providing data for actual weather module
+ *
+ * TODO: introduce database
  */
 public class DataCollectorActualWeather
 {

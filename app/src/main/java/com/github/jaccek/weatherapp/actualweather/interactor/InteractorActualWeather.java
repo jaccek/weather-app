@@ -10,8 +10,6 @@ import java.lang.ref.WeakReference;
 
 /**
  * Responsibility: running new threads to get data for actual weather module
- *
- * TODO: now it has also responsibility to download data from network - must be separated!
  */
 public class InteractorActualWeather implements
         ContractActualWeather.Interactor
