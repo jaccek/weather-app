@@ -35,6 +35,7 @@ public class NetworkConnectorRetrofit implements
     @Override
     public RawCity downloadCity(int pCityId) throws ExceptionNetwork
     {
+        // TODO: refactor - broken SRP
         try
         {
             Call<RawCitiesList> call = mWsInterface.downloadCities();
