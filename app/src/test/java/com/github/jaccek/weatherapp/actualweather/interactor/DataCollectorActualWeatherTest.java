@@ -2,13 +2,13 @@ package com.github.jaccek.weatherapp.actualweather.interactor;
 
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
-import com.github.jaccek.weatherapp.network.data.converter.ConverterActualWeather;
-import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
 import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
-import com.github.jaccek.weatherapp.network.data.RawCity;
-import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
+import com.github.jaccek.weatherapp.network.data.RawCity;
+import com.github.jaccek.weatherapp.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.data.converter.ConverterActualWeather;
+import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,8 +17,10 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -48,29 +50,36 @@ public class DataCollectorActualWeatherTest
     public void testGetUserCitySuccess() throws Exception
     {
         City city = new City();
+        List<RawCity> rawCities = new ArrayList<>();
         RawCity rawCity = new RawCity();
-        when(mConnector.downloadCity(anyInt())).thenReturn(rawCity);
+        rawCity.setId(43116);
+        rawCities.add(rawCity);
+
+        when(mConnector.downloadCities()).thenReturn(rawCities);
         when(mConverterCity.convert(rawCity)).thenReturn(city);
 
         City returnedCity = mDataCollector.getUserCity();
 
         assertEquals(city, returnedCity);
-        verify(mConnector).downloadCity(anyInt());  // TODO: change anyInt() to concrete city id
+        verify(mConnector).downloadCities();
         verify(mConverterCity).convert(rawCity);
     }
 
     @Test(expected = ExceptionNetwork.class)
     public void testRequestUserCityFailDownloading() throws Exception
     {
-        when(mConnector.downloadCity(anyInt())).thenThrow(ExceptionNetwork.class);
+        when(mConnector.downloadCities()).thenThrow(ExceptionNetwork.class);
         mDataCollector.getUserCity();
     }
 
     @Test(expected = ExceptionConversion.class)
     public void testRequestUserCityFailConversion() throws Exception
     {
+        List<RawCity> rawCities = new ArrayList<>();
         RawCity rawCity = new RawCity();
-        when(mConnector.downloadCity(anyInt())).thenReturn(rawCity);
+        rawCity.setId(43116);
+        rawCities.add(rawCity);
+        when(mConnector.downloadCities()).thenReturn(rawCities);
         when(mConverterCity.convert(rawCity)).thenThrow(ExceptionConversion.class);
 
         mDataCollector.getUserCity();

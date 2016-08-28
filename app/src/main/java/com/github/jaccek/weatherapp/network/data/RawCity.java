@@ -17,6 +17,11 @@ public class RawCity
         return mId;
     }
 
+    public void setId(int pId)
+    {
+        mId = pId;
+    }
+
     public String getName()
     {
         return mName;

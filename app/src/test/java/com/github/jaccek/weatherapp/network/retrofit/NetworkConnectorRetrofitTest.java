@@ -5,7 +5,9 @@ import com.github.jaccek.weatherapp.network.data.RawCity;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
+import java.util.List;
+
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created by jacek on 8/21/16.
@@ -23,12 +25,10 @@ public class NetworkConnectorRetrofitTest
     @Test
     public void testDownloadCity() throws Exception
     {
-        int cityId = 43116;
+        List<RawCity> returnedCities = mConnector.downloadCities();
 
-        RawCity returnedCity = mConnector.downloadCity(cityId);
-
-        assertEquals(cityId, returnedCity.getId());
-        assertEquals("Warszawa", returnedCity.getName());
+        assertTrue(returnedCities != null);
+        assertTrue(returnedCities.size() > 0);
     }
 
     // TODO: test empty response

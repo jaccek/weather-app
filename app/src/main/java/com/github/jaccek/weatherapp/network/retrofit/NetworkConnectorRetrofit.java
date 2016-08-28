@@ -7,6 +7,7 @@ import com.github.jaccek.weatherapp.network.data.RawCity;
 import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -31,9 +32,8 @@ public class NetworkConnectorRetrofit implements
         mWsInterface = retrofit.create(WebServiceInterface.class);
     }
 
-    // TODO: this should return list of cities!!!
     @Override
-    public RawCity downloadCity(int pCityId) throws ExceptionNetwork
+    public List<RawCity> downloadCities() throws ExceptionNetwork
     {
         // TODO: refactor - broken SRP
         try
@@ -50,15 +50,7 @@ public class NetworkConnectorRetrofit implements
             {
                 throw new ExceptionNetwork("Empty response");
             }
-
-            for (RawCity city : data.getCities())
-            {
-                if (city.getId() == pCityId)
-                {
-                    return city;
-                }
-            }
-            throw new ExceptionNetwork("City with id=" + pCityId + " not found");
+            return data.getCities();
         }
         catch(IOException pException)
         {

@@ -2,13 +2,15 @@ package com.github.jaccek.weatherapp.actualweather.interactor;
 
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
-import com.github.jaccek.weatherapp.network.data.converter.ConverterActualWeather;
-import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
 import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
-import com.github.jaccek.weatherapp.network.data.RawCity;
-import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
+import com.github.jaccek.weatherapp.network.data.RawCity;
+import com.github.jaccek.weatherapp.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.data.converter.ConverterActualWeather;
+import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
+
+import java.util.List;
 
 /**
  * Responsibility: providing data for actual weather module
@@ -33,8 +35,17 @@ public class DataCollectorActualWeather
     public City getUserCity() throws ExceptionNetwork, ExceptionConversion
     {
         // TODO: city id of Warsaw - change it
-        RawCity rawCity = mConnector.downloadCity(43116);
-        return mConverterCity.convert(rawCity);
+        final int warsawCityId = 43116;
+        List<RawCity> rawCities = mConnector.downloadCities();
+
+        for (RawCity city : rawCities)
+        {
+            if (city.getId() == warsawCityId)
+            {
+                return mConverterCity.convert(city);
+            }
+        }
+        throw new ExceptionNetwork("Cannot find city with id = " + warsawCityId);
     }
 
     public ActualWeatherData getActualWeatherData(City pCity) throws ExceptionNetwork, ExceptionConversion
