@@ -35,27 +35,38 @@ public class NetworkConnectorRetrofit implements
     @Override
     public List<RawCity> downloadCities() throws ExceptionNetwork
     {
-        // TODO: refactor - broken SRP
+        Response<RawCitiesList> response = sendRequestForCitiesList();
+        return getCitiesFromResponse(response);
+    }
+
+    private Response<RawCitiesList> sendRequestForCitiesList() throws ExceptionNetwork
+    {
+        Call<RawCitiesList> call = mWsInterface.downloadCities();
+        Response<RawCitiesList> response;
         try
         {
-            Call<RawCitiesList> call = mWsInterface.downloadCities();
-            Response<RawCitiesList> response = call.execute();
-            if (response.code() != 200)
-            {
-                throw new ExceptionNetwork(response.code());
-            }
-
-            RawCitiesList data = response.body();
-            if (data == null || data.getCities() == null || data.getCities().size() == 0)
-            {
-                throw new ExceptionNetwork("Empty response");
-            }
-            return data.getCities();
+            response = call.execute();
         }
         catch(IOException pException)
         {
             throw new ExceptionNetwork(pException);
         }
+        return response;
+    }
+
+    private List<RawCity> getCitiesFromResponse(Response<RawCitiesList> pResponse) throws ExceptionNetwork
+    {
+        if(pResponse.code() != 200)
+        {
+            throw new ExceptionNetwork(pResponse.code());
+        }
+
+        RawCitiesList data = pResponse.body();
+        if(data == null || data.getCities() == null || data.getCities().size() == 0)
+        {
+            throw new ExceptionNetwork("Empty response");
+        }
+        return data.getCities();
     }
 
     @Override

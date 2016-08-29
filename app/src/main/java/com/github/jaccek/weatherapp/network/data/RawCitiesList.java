@@ -16,4 +16,9 @@ public class RawCitiesList
     {
         return mCities;
     }
+
+    public void setCities(List<RawCity> pCities)
+    {
+        mCities = pCities;
+    }
 }
