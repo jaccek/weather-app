@@ -1,4 +1,4 @@
-package com.github.jaccek.weatherapp.frameworks.widget;
+package com.github.jaccek.weatherapp.utils.widget;
 
         import android.annotation.TargetApi;
         import android.content.Context;

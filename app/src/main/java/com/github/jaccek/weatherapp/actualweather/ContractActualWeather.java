@@ -2,6 +2,7 @@ package com.github.jaccek.weatherapp.actualweather;
 
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
+import com.github.jaccek.weatherapp.utils.contract.PresenterBase;
 
 /**
  * Created by jacek on 8/20/16.
@@ -28,7 +29,7 @@ public interface ContractActualWeather
         void startChangeCityActivity(PresenterForRouter pPresenter);
     }
 
-    interface Presenter
+    interface Presenter extends PresenterBase
     {
         void onCreate();
         void onCityClicked();

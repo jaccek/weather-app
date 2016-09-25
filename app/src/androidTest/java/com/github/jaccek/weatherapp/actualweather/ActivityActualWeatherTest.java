@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -24,6 +25,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class ActivityActualWeatherTest
 {
     ActivityActualWeather mActivity;
+    @Mock
+    ContractActualWeather.Presenter mPresenter;
+
     @Rule
     public ActivityTestRule<ActivityActualWeather> mActivityRule = new ActivityTestRule<>(ActivityActualWeather.class);
 
@@ -31,6 +35,7 @@ public class ActivityActualWeatherTest
     public void init()
     {
         mActivity = mActivityRule.getActivity();
+        mActivity.setPresenter(mPresenter);
     }
 
     @Test
@@ -56,7 +61,7 @@ public class ActivityActualWeatherTest
     public void testShowWeather()
     {
         final ActualWeatherData weatherData = new ActualWeatherData();
-        weatherData.setTemperature(18.763f);
+        weatherData.setTemperature(18);
 
         mActivity.runOnUiThread(new Runnable()
         {

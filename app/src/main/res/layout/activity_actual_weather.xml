@@ -49,7 +49,7 @@
                     android:textAppearance="@style/app.textAppearance.condensed"
                     tools:text="26.06.2016"/>
 
-                <com.github.jaccek.weatherapp.frameworks.widget.FontTextView
+                <com.github.jaccek.weatherapp.utils.widget.FontTextView
                     android:id="@+id/activity_weather_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
 
             </LinearLayout>
 
-            <com.github.jaccek.weatherapp.frameworks.widget.FontTextView
+            <com.github.jaccek.weatherapp.utils.widget.FontTextView
                 android:id="@+id/activity_weather_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 app:customFont="poiretone"
                 android:text="18"/>
 
-            <com.github.jaccek.weatherapp.frameworks.widget.FontTextView
+            <com.github.jaccek.weatherapp.utils.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -97,7 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"/>
 
-            <com.github.jaccek.weatherapp.frameworks.widget.FontTextView
+            <com.github.jaccek.weatherapp.utils.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/wind_icon"
@@ -112,7 +112,7 @@
                 android:textAppearance="@style/app.textAppearance.condensed.small"
                 tools:text="24km/h"/>
 
-            <com.github.jaccek.weatherapp.frameworks.widget.FontTextView
+            <com.github.jaccek.weatherapp.utils.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -120,7 +120,7 @@
                 android:textAppearance="@style/app.textAppearance"
                 app:customFont="meteocons"/>
 
-            <com.github.jaccek.weatherapp.frameworks.widget.FontTextView
+            <com.github.jaccek.weatherapp.utils.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -136,7 +136,7 @@
                 android:textAppearance="@style/app.textAppearance.condensed.small"
                 tools:text="4:12 am"/>
 
-            <com.github.jaccek.weatherapp.frameworks.widget.FontTextView
+            <com.github.jaccek.weatherapp.utils.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"

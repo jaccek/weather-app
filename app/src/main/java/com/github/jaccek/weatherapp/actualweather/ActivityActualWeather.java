@@ -2,17 +2,17 @@ package com.github.jaccek.weatherapp.actualweather;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.github.jaccek.weatherapp.R;
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
+import com.github.jaccek.weatherapp.utils.contract.ViewBaseActivity;
 
 /**
  * Responsibility: routing actions from actual weather module to Android system.
  */
-public class ActivityActualWeather extends AppCompatActivity implements
+public class ActivityActualWeather extends ViewBaseActivity<ContractActualWeather.Presenter> implements
         ContractActualWeather.View
 {
     private final int LAYOUT_ID = R.layout.activity_actual_weather;
@@ -28,6 +28,8 @@ public class ActivityActualWeather extends AppCompatActivity implements
 
         mCityNameView = (TextView) findViewById(R.id.activity_weather_city);
         mTemperatureView = (TextView) findViewById(R.id.activity_weather_temperature);
+
+        setPresenter(new PresenterActualWeather(this, null, null));
     }
 
     @Override

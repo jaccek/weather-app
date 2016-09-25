@@ -7,15 +7,15 @@ import java.util.Locale;
  */
 public class ActualWeatherData
 {
-    private float mTemperature;
+    private int mTemperature;
 
-    public void setTemperature(float pTemperature)
+    public void setTemperature(int pTemperature)
     {
         mTemperature = pTemperature;
     }
 
     public String getTemperature()
     {
-        return String.format(Locale.getDefault(), "%1$.1f", mTemperature);
+        return String.format(Locale.getDefault(), "%1$d", mTemperature);
     }
 }
