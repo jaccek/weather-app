@@ -24,7 +24,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.github.jaccek.weatherapp.MockTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -41,7 +41,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
 
     // Retrofit
     // http://square.github.io/retrofit/
@@ -56,7 +56,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // Espresso
-//    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
-//    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-//    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+}
+
+configurations.androidTestCompile.dependencies.each {
+    androidTestCompileDependency -> androidTestCompileDependency.exclude group: 'com.android.support'
 }

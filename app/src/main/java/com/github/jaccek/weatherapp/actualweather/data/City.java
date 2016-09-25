@@ -6,6 +6,7 @@ package com.github.jaccek.weatherapp.actualweather.data;
 public class City
 {
     private int mId;
+    private String mName;
 
     public int getId()
     {
@@ -15,5 +16,15 @@ public class City
     public void setId(int pId)
     {
         mId = pId;
+    }
+
+    public void setName(String pName)
+    {
+        mName = pName;
+    }
+
+    public String getName()
+    {
+        return mName;
     }
 }
