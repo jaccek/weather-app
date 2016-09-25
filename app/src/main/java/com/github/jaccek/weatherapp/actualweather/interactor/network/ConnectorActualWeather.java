@@ -13,5 +13,5 @@ public interface ConnectorActualWeather
 {
     List<RawCity> downloadCities() throws ExceptionNetwork;
 
-    RawWeatherData downloadWeatherData(int pId);
+    RawWeatherData downloadWeatherData(int pCityId) throws ExceptionNetwork;
 }

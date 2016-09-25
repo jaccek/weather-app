@@ -1,5 +1,7 @@
 package com.github.jaccek.weatherapp.network.retrofit;
 
+import android.support.annotation.NonNull;
+
 import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 import com.github.jaccek.weatherapp.network.data.RawCitiesList;
@@ -9,7 +11,6 @@ import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 import java.io.IOException;
 import java.util.List;
 
-import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -41,17 +42,15 @@ public class NetworkConnectorRetrofit implements
 
     private Response<RawCitiesList> sendRequestForCitiesList() throws ExceptionNetwork
     {
-        Call<RawCitiesList> call = mWsInterface.downloadCities();
-        Response<RawCitiesList> response;
         try
         {
-            response = call.execute();
+            Response<RawCitiesList> response = mWsInterface.downloadCities().execute();
+            return response;
         }
         catch(IOException pException)
         {
             throw new ExceptionNetwork(pException);
         }
-        return response;
     }
 
     private List<RawCity> getCitiesFromResponse(Response<RawCitiesList> pResponse) throws ExceptionNetwork
@@ -70,8 +69,37 @@ public class NetworkConnectorRetrofit implements
     }
 
     @Override
-    public RawWeatherData downloadWeatherData(int pId)
+    public RawWeatherData downloadWeatherData(int pCityId) throws ExceptionNetwork
     {
-        return null;
+        Response<RawWeatherData> response = getWeatherDataResponse(pCityId);
+        return getWeatherDataFromResponse(response);
+    }
+
+    @NonNull
+    private RawWeatherData getWeatherDataFromResponse(Response<RawWeatherData> pResponse) throws ExceptionNetwork
+    {
+        if(pResponse.code() != 200)
+        {
+            throw new ExceptionNetwork(pResponse.code());
+        }
+
+        RawWeatherData data = pResponse.body();
+        if(data == null)
+        {
+            throw new ExceptionNetwork("Empty response");
+        }
+        return data;
+    }
+
+    private Response<RawWeatherData> getWeatherDataResponse(int pCityId) throws ExceptionNetwork
+    {
+        try
+        {
+            return mWsInterface.downloadWeatherData(pCityId).execute();
+        }
+        catch(IOException pException)
+        {
+            throw new ExceptionNetwork(pException);
+        }
     }
 }

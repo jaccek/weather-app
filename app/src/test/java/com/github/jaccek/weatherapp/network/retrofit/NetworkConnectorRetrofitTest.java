@@ -3,6 +3,7 @@ package com.github.jaccek.weatherapp.network.retrofit;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 import com.github.jaccek.weatherapp.network.data.RawCitiesList;
 import com.github.jaccek.weatherapp.network.data.RawCity;
+import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,6 +35,8 @@ public class NetworkConnectorRetrofitTest
     WebServiceInterface mWebServiceInterface;
     @Mock
     Call<RawCitiesList> mCallCities;
+    @Mock
+    Call<RawWeatherData> mCallWeatherData;
 
     @Rule
     public MockitoRule mMockitoRule = MockitoJUnit.rule();
@@ -87,5 +90,43 @@ public class NetworkConnectorRetrofitTest
         when(mCallCities.execute()).thenReturn(response);
 
         mConnector.downloadCities();
+    }
+
+    @Test
+    public void testDownloadWeatherDataSuccess() throws Exception
+    {
+        final int cityId = 43116;
+        RawWeatherData rawWeatherData = new RawWeatherData();
+        Response<RawWeatherData> response = Response.success(rawWeatherData);
+        when(mWebServiceInterface.downloadWeatherData(cityId)).thenReturn(mCallWeatherData);
+        when(mCallWeatherData.execute()).thenReturn(response);
+
+        RawWeatherData returnedData = mConnector.downloadWeatherData(cityId);
+
+        assertEquals(rawWeatherData, returnedData);
+        verify(mWebServiceInterface).downloadWeatherData(cityId);
+    }
+
+    @Test(expected = ExceptionNetwork.class)
+    public void testDownloadWeatherDataEmptyResponse() throws Exception
+    {
+        final int cityId = 43116;
+        Response<RawWeatherData> response = Response.success(null);
+        when(mWebServiceInterface.downloadWeatherData(cityId)).thenReturn(mCallWeatherData);
+        when(mCallWeatherData.execute()).thenReturn(response);
+
+        mConnector.downloadWeatherData(cityId);
+    }
+
+    @Test(expected = ExceptionNetwork.class)
+    public void testDownloadWeatherData404() throws Exception
+    {
+        final int cityId = 43116;
+        ResponseBody responseBody = ResponseBody.create(MediaType.parse("application/json"), "");
+        Response<RawWeatherData> response = Response.error(404, responseBody);
+        when(mWebServiceInterface.downloadWeatherData(cityId)).thenReturn(mCallWeatherData);
+        when(mCallWeatherData.execute()).thenReturn(response);
+
+        mConnector.downloadWeatherData(cityId);
     }
 }
