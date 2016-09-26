@@ -22,6 +22,8 @@ public class InteractorActualWeather implements
     {
         mThreadRunner = pThreadRunner;
         mDataCollector = pDataCollector;
+
+        //mDataCollector = ApplicationWeather.getComponent().getDataCollectorActualWeather();
     }
 
     @Override

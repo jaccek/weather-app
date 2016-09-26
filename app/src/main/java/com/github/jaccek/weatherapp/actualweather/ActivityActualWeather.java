@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 
+import com.github.jaccek.weatherapp.ApplicationWeather;
 import com.github.jaccek.weatherapp.R;
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
+import com.github.jaccek.weatherapp.actualweather.interactor.DataCollectorActualWeather;
 import com.github.jaccek.weatherapp.utils.contract.ViewBaseActivity;
 
 /**
@@ -20,6 +22,8 @@ public class ActivityActualWeather extends ViewBaseActivity<ContractActualWeathe
     private TextView mCityNameView;
     private TextView mTemperatureView;
 
+    private DataCollectorActualWeather dataCollector;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
@@ -30,6 +34,8 @@ public class ActivityActualWeather extends ViewBaseActivity<ContractActualWeathe
         mTemperatureView = (TextView) findViewById(R.id.activity_weather_temperature);
 
         setPresenter(new PresenterActualWeather(this, null, null));
+
+        dataCollector = ((ApplicationWeather) getApplication()).getComponent().getDataCollectorActualWeather();
     }
 
     @Override

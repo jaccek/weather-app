@@ -12,6 +12,8 @@ import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Responsibility: providing data for actual weather module
  *
@@ -23,6 +25,7 @@ public class DataCollectorActualWeather
     private ConverterCity mConverterCity;
     private ConverterActualWeather mConverterActualWeather;
 
+    @Inject
     public DataCollectorActualWeather(ConnectorActualWeather pConnector,
                                       ConverterCity pConverter,
                                       ConverterActualWeather pConverterActualWeather)
