@@ -29,7 +29,7 @@ public interface ContractActualWeather
         void startChangeCityActivity(PresenterForRouter pPresenter);
     }
 
-    interface Presenter extends PresenterBase
+    interface Presenter extends PresenterBase<View, Router>
     {
         void onCreate();
         void onCityClicked();

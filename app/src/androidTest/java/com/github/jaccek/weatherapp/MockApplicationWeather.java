@@ -8,7 +8,7 @@ import com.github.jaccek.weatherapp.dagger.DaggerApplicationComponent;
  * Created by jacek on 9/26/16.
  */
 
-public class TestApplicationWeather extends ApplicationWeather
+public class MockApplicationWeather extends ApplicationWeather
 {
     @Override
     public void onCreate()

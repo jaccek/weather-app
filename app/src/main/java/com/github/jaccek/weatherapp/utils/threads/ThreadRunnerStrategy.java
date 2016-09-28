@@ -1,4 +1,4 @@
-package com.github.jaccek.weatherapp.network;
+package com.github.jaccek.weatherapp.utils.threads;
 
 /**
  * Created by jacek on 8/20/16.

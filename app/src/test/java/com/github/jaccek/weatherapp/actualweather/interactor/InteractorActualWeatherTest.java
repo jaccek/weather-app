@@ -5,7 +5,7 @@ import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
-import com.github.jaccek.weatherapp.network.ThreadRunnerStrategy;
+import com.github.jaccek.weatherapp.utils.threads.ThreadRunnerStrategy;
 
 import org.junit.Before;
 import org.junit.Rule;

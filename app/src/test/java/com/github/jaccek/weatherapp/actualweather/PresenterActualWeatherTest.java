@@ -31,7 +31,8 @@ public class PresenterActualWeatherTest
     @Before
     public void init()
     {
-        mPresenter = new PresenterActualWeather(mView, mRouter, mInteractor);
+        mPresenter = new PresenterActualWeather(mInteractor);
+        mPresenter.init(mView, mRouter);
     }
 
     @Test

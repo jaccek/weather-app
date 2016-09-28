@@ -16,13 +16,16 @@ public class PresenterActualWeather implements
     private ContractActualWeather.Interactor mInteractor;
 
     public PresenterActualWeather(
-            ContractActualWeather.View pView,
-            ContractActualWeather.Router pRouter,
             ContractActualWeather.Interactor pInteractor)
+    {
+        mInteractor = pInteractor;
+    }
+
+    @Override
+    public void init(ContractActualWeather.View pView, ContractActualWeather.Router pRouter)
     {
         mView = pView;
         mRouter = pRouter;
-        mInteractor = pInteractor;
     }
 
     @Override

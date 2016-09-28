@@ -2,27 +2,26 @@ package com.github.jaccek.weatherapp.actualweather;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.github.jaccek.weatherapp.ApplicationWeather;
 import com.github.jaccek.weatherapp.R;
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.actualweather.data.City;
-import com.github.jaccek.weatherapp.actualweather.interactor.DataCollectorActualWeather;
-import com.github.jaccek.weatherapp.utils.contract.ViewBaseActivity;
 
 /**
  * Responsibility: routing actions from actual weather module to Android system.
  */
-public class ActivityActualWeather extends ViewBaseActivity<ContractActualWeather.Presenter> implements
+public class ActivityActualWeather extends AppCompatActivity implements
         ContractActualWeather.View
 {
     private final int LAYOUT_ID = R.layout.activity_actual_weather;
 
+    private ContractActualWeather.Presenter mPresenter;
+
     private TextView mCityNameView;
     private TextView mTemperatureView;
-
-    private DataCollectorActualWeather dataCollector;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -33,9 +32,9 @@ public class ActivityActualWeather extends ViewBaseActivity<ContractActualWeathe
         mCityNameView = (TextView) findViewById(R.id.activity_weather_city);
         mTemperatureView = (TextView) findViewById(R.id.activity_weather_temperature);
 
-        setPresenter(new PresenterActualWeather(this, null, null));
-
-        dataCollector = ((ApplicationWeather) getApplication()).getComponent().getDataCollectorActualWeather();
+        mPresenter = ((ApplicationWeather) getApplication()).getComponent().getActualWeatherPresenter();
+        mPresenter.init(this, null);
+        mPresenter.onCreate();
     }
 
     @Override

@@ -14,6 +14,6 @@ public class MockTestRunner extends AndroidJUnitRunner
     public Application newApplication(ClassLoader cl, String className, Context context)
             throws InstantiationException, IllegalAccessException, ClassNotFoundException
     {
-        return super.newApplication(cl, TestApplicationWeather.class.getName(), context);
+        return super.newApplication(cl, MockApplicationWeather.class.getName(), context);
     }
 }
