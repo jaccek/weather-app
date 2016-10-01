@@ -18,7 +18,7 @@ public class ActivityActualWeather extends AppCompatActivity implements
 {
     private final int LAYOUT_ID = R.layout.activity_actual_weather;
 
-    private ContractActualWeather.Presenter mPresenter;
+    ContractActualWeather.Presenter mPresenter;
 
     private TextView mCityNameView;
     private TextView mTemperatureView;
@@ -46,7 +46,7 @@ public class ActivityActualWeather extends AppCompatActivity implements
     @Override
     public void showWeather(ActualWeatherData pWeatherData)
     {
-        mTemperatureView.setText(pWeatherData.getTemperature());
+        mTemperatureView.setText("" + pWeatherData.getTemperature());
     }
 
     @Override

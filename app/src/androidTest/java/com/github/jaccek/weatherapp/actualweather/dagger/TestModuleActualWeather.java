@@ -1,10 +1,10 @@
 package com.github.jaccek.weatherapp.actualweather.dagger;
 
-import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
+import com.github.jaccek.weatherapp.actualweather.ContractActualWeather;
+
+import org.mockito.Mockito;
 
 import dagger.Module;
-
-import static org.mockito.Mockito.mock;
 
 /**
  * Created by jacek on 9/26/16.
@@ -13,8 +13,8 @@ import static org.mockito.Mockito.mock;
 public class TestModuleActualWeather extends ModuleActualWeather
 {
     @Override
-    ConnectorActualWeather provideConnector()
+    ContractActualWeather.Presenter providePresenter(ContractActualWeather.Interactor pInteractor)
     {
-        return mock(ConnectorActualWeather.class);
+        return Mockito.mock(ContractActualWeather.Presenter.class);
     }
 }

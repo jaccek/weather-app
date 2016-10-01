@@ -18,9 +18,12 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -94,13 +97,13 @@ public class DataCollectorActualWeatherTest
         RawWeatherData rawWeather = new RawWeatherData();
         ActualWeatherData actualWeather = new ActualWeatherData();
         when(mConnector.downloadWeatherData(cityId)).thenReturn(rawWeather);
-        when(mConverterActualWeather.convert(rawWeather)).thenReturn(actualWeather);
+        when(mConverterActualWeather.convert(eq(rawWeather), any(Calendar.class))).thenReturn(actualWeather);
 
         ActualWeatherData returnedWeather = mDataCollector.getActualWeatherData(city);
 
         assertEquals(actualWeather, returnedWeather);
         verify(mConnector).downloadWeatherData(cityId);
-        verify(mConverterActualWeather).convert(rawWeather);
+        verify(mConverterActualWeather).convert(eq(rawWeather), any(Calendar.class));
     }
 
     @Test(expected = ExceptionNetwork.class)
@@ -122,7 +125,7 @@ public class DataCollectorActualWeatherTest
         city.setId(cityId);
         RawWeatherData rawWeather = new RawWeatherData();
         when(mConnector.downloadWeatherData(cityId)).thenReturn(rawWeather);
-        when(mConverterActualWeather.convert(rawWeather)).thenThrow(ExceptionConversion.class);
+        when(mConverterActualWeather.convert(eq(rawWeather), any(Calendar.class))).thenThrow(ExceptionConversion.class);
 
         mDataCollector.getActualWeatherData(city);
     }

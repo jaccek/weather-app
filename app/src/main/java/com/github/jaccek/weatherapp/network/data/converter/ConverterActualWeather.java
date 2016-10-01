@@ -1,16 +1,85 @@
 package com.github.jaccek.weatherapp.network.data.converter;
 
+import android.support.annotation.NonNull;
+
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
+import com.github.jaccek.weatherapp.converter.ExceptionConversion;
+import com.github.jaccek.weatherapp.network.data.RawWeatherDay;
 import com.github.jaccek.weatherapp.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.data.RawWeatherPeriod;
+
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by jacek on 8/21/16.
  */
 public class ConverterActualWeather
 {
-    public ActualWeatherData convert(RawWeatherData pRawWeather)
+    private static final long MILLIS_IN_DAY = 24L * 60L * 60L * 1000L;
+
+    public ActualWeatherData convert(RawWeatherData pRawWeather, Calendar pDate) throws ExceptionConversion
     {
-        // TODO:
-        return null;
+        if(pRawWeather == null)
+        {
+            throw new ExceptionConversion("Source to convert is null");
+        }
+
+        RawWeatherDay rawDay = findWeatherDay(pRawWeather, pDate);
+        RawWeatherPeriod period = findClosestWeatherPeriod(pDate, rawDay);
+
+        return createActualWeatherData(period);
+    }
+
+    @NonNull
+    private RawWeatherDay findWeatherDay(RawWeatherData pRawWeather, Calendar pDate) throws ExceptionConversion
+    {
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+
+        for(RawWeatherDay rawDay : pRawWeather.getDays())
+        {
+            startDate.setTimeInMillis(rawDay.getTimestamp());
+            endDate.setTimeInMillis(rawDay.getTimestamp() + MILLIS_IN_DAY);
+
+            if(pDate.after(startDate) && pDate.before(endDate))
+            {
+                return rawDay;
+            }
+        }
+
+        throw new ExceptionConversion("Cannot find weather data for given date");
+    }
+
+    private RawWeatherPeriod findClosestWeatherPeriod(Calendar pDate, RawWeatherDay pRawDay)
+    {
+        int closestPeriodIdx = 0;
+        long smallestTimestampDifference = Long.MAX_VALUE;
+        long pDateTimestamp = pDate.getTimeInMillis();
+        List<RawWeatherPeriod> periods = pRawDay.getWeatherPeriods();
+
+        for(int i = 0; i < periods.size(); ++i)
+        {
+            long currentTimestampDifference = Math.abs(pDateTimestamp - periods.get(i).getTimestamp());
+            if(currentTimestampDifference < smallestTimestampDifference)
+            {
+                smallestTimestampDifference = currentTimestampDifference;
+                closestPeriodIdx = i;
+            }
+        }
+
+        return periods.get(closestPeriodIdx);
+    }
+
+    @NonNull
+    private ActualWeatherData createActualWeatherData(RawWeatherPeriod pPeriod)
+    {
+        ActualWeatherData actualWeatherData = new ActualWeatherData();
+        actualWeatherData.setTemperature(pPeriod.getTemperature());
+        actualWeatherData.setPressure(pPeriod.getPressure());
+        // TODO: weather type (rain, sunny etc.)
+        // TODO: sunset
+        // TODO: sunrise
+        return actualWeatherData;
     }
 }

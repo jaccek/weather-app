@@ -16,6 +16,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by jacek on 9/25/16.
@@ -24,6 +25,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class ActivityActualWeatherTest
 {
     ActivityActualWeather mActivity;
+    ContractActualWeather.Presenter mPresenter;
 
     @Rule
     public ActivityTestRule<ActivityActualWeather> mActivityRule = new ActivityTestRule<>(ActivityActualWeather.class);
@@ -32,6 +34,15 @@ public class ActivityActualWeatherTest
     public void init()
     {
         mActivity = mActivityRule.getActivity();
+        mPresenter = mActivity.mPresenter;
+    }
+
+    @Test
+    public void testOnCreate()
+    {
+        // when section is unnecessary - onCreate already invoked
+        verify(mPresenter).init(mActivity, null);
+        verify(mPresenter).onCreate();
     }
 
     @Test
@@ -68,6 +79,6 @@ public class ActivityActualWeatherTest
             }
         });
 
-        onView(withId(R.id.activity_weather_temperature)).check(matches(withText(weatherData.getTemperature())));
+        onView(withId(R.id.activity_weather_temperature)).check(matches(withText("" + weatherData.getTemperature())));
     }
 }

@@ -10,6 +10,7 @@ import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 import com.github.jaccek.weatherapp.network.data.converter.ConverterActualWeather;
 import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -54,6 +55,6 @@ public class DataCollectorActualWeather
     public ActualWeatherData getActualWeatherData(City pCity) throws ExceptionNetwork, ExceptionConversion
     {
         RawWeatherData rawWeather = mConnector.downloadWeatherData(pCity.getId());
-        return mConverterActualWeather.convert(rawWeather);
+        return mConverterActualWeather.convert(rawWeather, Calendar.getInstance());
     }
 }
