@@ -17,7 +17,9 @@ import java.util.List;
 public class ConverterActualWeather
 {
     private static final long MILLIS_IN_DAY = 24L * 60L * 60L * 1000L;
+
     private ConverterHour mConverterHour = new ConverterHour();
+    private ConverterWeatherType mConverterWeatherType = new ConverterWeatherType();
 
     public ActualWeatherData convert(RawWeatherData pRawWeather, Calendar pDate) throws ExceptionConversion
     {
@@ -81,7 +83,7 @@ public class ConverterActualWeather
         actualWeatherData.setPressure(pPeriod.getPressure());
         actualWeatherData.setSunriseHour(mConverterHour.convert(pDay.getSunriseHour()));
         actualWeatherData.setSunsetHour(mConverterHour.convert(pDay.getSunsetHour()));
-        // TODO: weather type (rain, sunny etc.)
+        actualWeatherData.setWeatherType(mConverterWeatherType.convert(pPeriod.getWeatherType()));
         return actualWeatherData;
     }
 }

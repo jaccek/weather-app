@@ -40,7 +40,7 @@
                     android:ellipsize="end"
                     android:lines="1"
                     android:textAppearance="@style/app.textAppearance.condensed.bold.big"
-                    android:text="New York very long name"/>
+                    tools:text="New York very long name"/>
 
                 <TextView
                     android:id="@+id/activity_weather_date"
@@ -54,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
                     android:textAppearance="@style/app.textAppearance.bigger"
                     app:customFont="meteocons"
                     tools:text="B"/>
@@ -102,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/wind_icon"
                 android:textAppearance="@style/app.textAppearance"
+                android:visibility="gone"
                 app:customFont="meteocons"/>
 
             <TextView

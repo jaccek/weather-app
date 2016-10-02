@@ -10,7 +10,7 @@
     </style>
 
     <style name="app.textAppearance.bigger">
-        <item name="android:textSize">75sp</item>
+        <item name="android:textSize">65sp</item>
     </style>
 
     <style name="app.textAppearance.theBiggest">

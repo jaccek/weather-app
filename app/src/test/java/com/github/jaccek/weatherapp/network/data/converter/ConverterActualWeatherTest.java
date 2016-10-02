@@ -1,6 +1,7 @@
 package com.github.jaccek.weatherapp.network.data.converter;
 
 import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
+import com.github.jaccek.weatherapp.actualweather.data.WeatherType;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.data.RawWeatherDay;
 import com.github.jaccek.weatherapp.network.data.RawWeatherData;
@@ -71,6 +72,7 @@ public class ConverterActualWeatherTest
         assertEquals(rawDay.getSunriseHour().getMinutes(), convertedWeather.getSunriseHour().getMinutes());
         assertEquals(rawDay.getSunsetHour().getHour(), convertedWeather.getSunsetHour().getHour());
         assertEquals(rawDay.getSunsetHour().getMinutes(), convertedWeather.getSunsetHour().getMinutes());
+        assertEquals(WeatherType.RAIN, convertedWeather.getWeatherType());
     }
 
     private RawWeatherData getRawWeatherData() throws Exception

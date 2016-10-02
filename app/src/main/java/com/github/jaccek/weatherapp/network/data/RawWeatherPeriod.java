@@ -13,6 +13,8 @@ public class RawWeatherPeriod
     private int mTemperature;
     @SerializedName("pressure")
     private int mPressure;
+    @SerializedName("icon")
+    private RawWeatherType mWeatherType;
 
     public long getTimestamp()
     {
@@ -27,5 +29,10 @@ public class RawWeatherPeriod
     public int getPressure()
     {
         return mPressure;
+    }
+
+    public RawWeatherType getWeatherType()
+    {
+        return mWeatherType;
     }
 }

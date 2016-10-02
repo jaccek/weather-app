@@ -27,4 +27,11 @@ public class Hour
     {
         return mMinutes;
     }
+
+    @Override
+    public String toString()
+    {
+        String leadingZero = mMinutes < 10 ? "0" : "";
+        return mHour + ":" + leadingZero + mMinutes;
+    }
 }

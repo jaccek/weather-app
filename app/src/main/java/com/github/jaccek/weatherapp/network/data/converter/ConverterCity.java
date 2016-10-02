@@ -11,7 +11,9 @@ public class ConverterCity
 {
     public City convert(RawCity pRawCity) throws ExceptionConversion
     {
-        // TODO:
-        return new City();
+        // TODO: remove this hardcoded city
+        City city = new City();
+        city.setName("Warszawa");
+        return city;
     }
 }
