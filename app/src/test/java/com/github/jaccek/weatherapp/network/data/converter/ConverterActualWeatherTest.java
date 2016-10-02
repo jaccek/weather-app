@@ -67,7 +67,10 @@ public class ConverterActualWeatherTest
 
         assertEquals(rawWeatherPeriod.getTemperature(), convertedWeather.getTemperature());
         assertEquals(rawWeatherPeriod.getPressure(), convertedWeather.getPressure());
-        // TODO: check correctness of rest data
+        assertEquals(rawDay.getSunriseHour().getHour(), convertedWeather.getSunriseHour().getHour());
+        assertEquals(rawDay.getSunriseHour().getMinutes(), convertedWeather.getSunriseHour().getMinutes());
+        assertEquals(rawDay.getSunsetHour().getHour(), convertedWeather.getSunsetHour().getHour());
+        assertEquals(rawDay.getSunsetHour().getMinutes(), convertedWeather.getSunsetHour().getMinutes());
     }
 
     private RawWeatherData getRawWeatherData() throws Exception

@@ -7,6 +7,8 @@ public class ActualWeatherData
 {
     private int mTemperature;
     private int mPressure;
+    private Hour mSunriseHour;
+    private Hour mSunsetHour;
 
     public void setTemperature(int pTemperature)
     {
@@ -26,5 +28,25 @@ public class ActualWeatherData
     public int getPressure()
     {
         return mPressure;
+    }
+
+    public void setSunriseHour(Hour pSunriseHour)
+    {
+        mSunriseHour = pSunriseHour;
+    }
+
+    public Hour getSunriseHour()
+    {
+        return mSunriseHour;
+    }
+
+    public void setSunsetHour(Hour pSunsetHour)
+    {
+        mSunsetHour = pSunsetHour;
+    }
+
+    public Hour getSunsetHour()
+    {
+        return mSunsetHour;
     }
 }
