@@ -1,4 +1,6 @@
-package com.github.jaccek.weatherapp.actualweather.data;
+package com.github.jaccek.weatherapp.data;
+
+import com.github.jaccek.weatherapp.data.Hour;
 
 import org.junit.Test;
 

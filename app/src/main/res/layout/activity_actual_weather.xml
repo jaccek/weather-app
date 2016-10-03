@@ -55,10 +55,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
                     android:textAppearance="@style/app.textAppearance.bigger"
                     app:customFont="meteocons"
                     tools:text="B"/>
-
             </LinearLayout>
 
             <com.github.jaccek.weatherapp.utils.widget.FontTextView
@@ -68,7 +68,7 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@style/app.textAppearance.theBiggest"
                 app:customFont="poiretone"
-                android:text="18"/>
+                tools:text="18"/>
 
             <com.github.jaccek.weatherapp.utils.widget.FontTextView
                 android:layout_width="wrap_content"
@@ -78,7 +78,6 @@
                 android:textAppearance="@style/app.textAppearance.bigger"
                 android:text="@string/celsiusDegrees"
                 app:customFont="poiretone"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -153,7 +152,6 @@
                 android:layout_marginLeft="2dp"
                 android:textAppearance="@style/app.textAppearance.condensed.small"
                 tools:text="9:24 pm"/>
-
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

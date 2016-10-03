@@ -1,4 +1,4 @@
-package com.github.jaccek.weatherapp.actualweather.data;
+package com.github.jaccek.weatherapp.data;
 
 /**
  * Created by jacek on 10/2/16.

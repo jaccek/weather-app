@@ -1,7 +1,7 @@
 package com.github.jaccek.weatherapp.network.data.converter;
 
-import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
-import com.github.jaccek.weatherapp.actualweather.data.WeatherType;
+import com.github.jaccek.weatherapp.data.ActualWeatherData;
+import com.github.jaccek.weatherapp.data.WeatherType;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.data.RawWeatherDay;
 import com.github.jaccek.weatherapp.network.data.RawWeatherData;

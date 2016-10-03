@@ -1,6 +1,6 @@
 package com.github.jaccek.weatherapp.network.data.converter;
 
-import com.github.jaccek.weatherapp.actualweather.data.Hour;
+import com.github.jaccek.weatherapp.data.Hour;
 import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.data.RawHour;
 

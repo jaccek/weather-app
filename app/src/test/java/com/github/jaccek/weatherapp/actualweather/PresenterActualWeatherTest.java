@@ -1,7 +1,7 @@
 package com.github.jaccek.weatherapp.actualweather;
 
-import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
-import com.github.jaccek.weatherapp.actualweather.data.City;
+import com.github.jaccek.weatherapp.data.ActualWeatherData;
+import com.github.jaccek.weatherapp.data.City;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -47,8 +47,12 @@ public class PresenterActualWeatherTest
     @Test
     public void testOnCityClicked()
     {
+        City city = new City();
+        mPresenter.onCity(city);
+
         mPresenter.onCityClicked();
-        verify(mRouter).startChangeCityActivity(mPresenter);
+
+        verify(mRouter).startChangeCityActivity(mPresenter, city);
     }
 
     @Test

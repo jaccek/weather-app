@@ -1,7 +1,7 @@
 package com.github.jaccek.weatherapp.actualweather;
 
-import com.github.jaccek.weatherapp.actualweather.data.ActualWeatherData;
-import com.github.jaccek.weatherapp.actualweather.data.City;
+import com.github.jaccek.weatherapp.data.ActualWeatherData;
+import com.github.jaccek.weatherapp.data.City;
 
 /**
  * Responsibility: merge all components of actual weather module
@@ -14,6 +14,8 @@ public class PresenterActualWeather implements
     private ContractActualWeather.View mView;
     private ContractActualWeather.Router mRouter;
     private ContractActualWeather.Interactor mInteractor;
+
+    private City mSelectedCity;
 
     public PresenterActualWeather(
             ContractActualWeather.Interactor pInteractor)
@@ -38,7 +40,7 @@ public class PresenterActualWeather implements
     @Override
     public void onCityClicked()
     {
-        mRouter.startChangeCityActivity(this);
+        mRouter.startChangeCityActivity(this, mSelectedCity);
     }
 
     @Override
@@ -50,6 +52,7 @@ public class PresenterActualWeather implements
     @Override
     public void onCityChanged(City pCity)
     {
+        mSelectedCity = pCity;
         mView.showCity(pCity);
         mView.showLoader();
         mInteractor.requestActualWeatherData(this, pCity);
