@@ -38,7 +38,7 @@ public class ModuleActualWeather
 
     @Provides
     @Singleton
-    ThreadRunnerStrategy provideThredRunnerStrategy()
+    ThreadRunnerStrategy provideThreadRunnerStrategy()
     {
         return new ThreadRunnerStrategyImpl();
     }

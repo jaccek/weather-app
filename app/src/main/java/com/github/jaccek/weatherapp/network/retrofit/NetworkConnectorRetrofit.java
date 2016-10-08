@@ -11,6 +11,8 @@ import com.github.jaccek.weatherapp.network.data.RawWeatherData;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -23,6 +25,7 @@ public class NetworkConnectorRetrofit implements
 {
     private WebServiceInterface mWsInterface;
 
+    @Inject
     public NetworkConnectorRetrofit()
     {
         Retrofit retrofit = new Retrofit.Builder()

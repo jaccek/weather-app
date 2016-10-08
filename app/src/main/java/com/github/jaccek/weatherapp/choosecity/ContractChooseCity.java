@@ -17,6 +17,10 @@ public interface ContractChooseCity
         void showLoader();
 
         void showCities(List<City> pCities);
+
+        void showSearcher();
+
+        void showError();
     }
 
     interface Presenter
@@ -35,6 +39,13 @@ public interface ContractChooseCity
         void onCities(List<City> pCities);
 
         void onError();
+    }
+
+    interface Interactor
+    {
+        void setPresenter(PresenterForInteractor pPresenter);
+
+        void queryCitiesList();
     }
 
     interface Router

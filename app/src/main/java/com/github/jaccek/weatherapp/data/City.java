@@ -8,6 +8,16 @@ public class City
     private int mId;
     private String mName;
 
+    public City()
+    {
+    }
+
+    public City(int pId, String pName)
+    {
+        mId = pId;
+        mName = pName;
+    }
+
     public int getId()
     {
         return mId;
