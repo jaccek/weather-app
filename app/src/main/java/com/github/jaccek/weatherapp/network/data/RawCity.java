@@ -12,6 +12,16 @@ public class RawCity
     @SerializedName("name")
     private String mName;
 
+    public RawCity()
+    {
+    }
+
+    public RawCity(int pId, String pName)
+    {
+        mId = pId;
+        mName = pName;
+    }
+
     public int getId()
     {
         return mId;

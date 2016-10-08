@@ -34,7 +34,7 @@ public class PresenterChooseCity implements
     public void onCreate()
     {
         mView.showLoader();
-        mInteractor.queryCitiesList();
+        mInteractor.queryCities();
     }
 
     @Override
@@ -80,5 +80,6 @@ public class PresenterChooseCity implements
     @Override
     public void onError()
     {
+        mView.showError();
     }
 }

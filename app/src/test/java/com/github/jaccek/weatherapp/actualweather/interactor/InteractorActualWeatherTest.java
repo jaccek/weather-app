@@ -1,10 +1,11 @@
 package com.github.jaccek.weatherapp.actualweather.interactor;
 
 import com.github.jaccek.weatherapp.actualweather.ContractActualWeather;
+import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.data.ActualWeatherData;
 import com.github.jaccek.weatherapp.data.City;
-import com.github.jaccek.weatherapp.converter.ExceptionConversion;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
+import com.github.jaccek.weatherapp.testutils.ThreadRunnerSingleThread;
 import com.github.jaccek.weatherapp.utils.threads.ThreadRunnerStrategy;
 
 import org.junit.Before;
@@ -38,7 +39,7 @@ public class InteractorActualWeatherTest
     @Before
     public void init()
     {
-        mThreadRunner = new ThreadRunnerMocked();
+        mThreadRunner = new ThreadRunnerSingleThread();
         mInteractor = new InteractorActualWeather(mThreadRunner, mDataCollector);
 
         // prevent printing exception log running line:
@@ -123,21 +124,5 @@ public class InteractorActualWeatherTest
         verify(mPresenter).onConnectionError();
     }
 
-    /**
-     * Mock of {@link ThreadRunnerMocked}. It runs all {@link Runnable}s in actual thread.
-     */
-    private static class ThreadRunnerMocked implements ThreadRunnerStrategy
-    {
-        @Override
-        public void executeInBackground(Runnable pRunnable)
-        {
-            pRunnable.run();
-        }
 
-        @Override
-        public void executeInMainThread(Runnable pRunnable)
-        {
-            pRunnable.run();
-        }
-    }
 }

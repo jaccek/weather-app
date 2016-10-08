@@ -61,4 +61,10 @@ public class ActivityChooseCity extends AppCompatActivity implements
     {
 
     }
+
+    @Override
+    public void showError()
+    {
+
+    }
 }

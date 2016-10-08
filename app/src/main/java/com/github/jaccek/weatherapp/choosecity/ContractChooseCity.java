@@ -45,7 +45,7 @@ public interface ContractChooseCity
     {
         void setPresenter(PresenterForInteractor pPresenter);
 
-        void queryCitiesList();
+        void queryCities();
     }
 
     interface Router

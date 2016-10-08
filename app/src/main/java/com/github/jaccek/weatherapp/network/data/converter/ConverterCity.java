@@ -9,11 +9,21 @@ import com.github.jaccek.weatherapp.converter.ExceptionConversion;
  */
 public class ConverterCity
 {
+    // TODO: test it!!!
     public City convert(RawCity pRawCity) throws ExceptionConversion
     {
-        // TODO: remove this hardcoded city
+        if (pRawCity.getId() <= 0)
+        {
+            throw new ExceptionConversion("City without id");
+        }
+        if (pRawCity.getName() == null || pRawCity.getName().isEmpty())
+        {
+            throw new ExceptionConversion("City without name");
+        }
+
         City city = new City();
-        city.setName("Warszawa");
+        city.setId(pRawCity.getId());
+        city.setName(pRawCity.getName());
         return city;
     }
 }

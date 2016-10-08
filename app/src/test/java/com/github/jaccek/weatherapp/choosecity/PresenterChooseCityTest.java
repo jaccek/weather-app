@@ -46,7 +46,7 @@ public class PresenterChooseCityTest
 
         verify(mView).showLoader();
         verify(mInteractor).setPresenter(mPresenter);
-        verify(mInteractor).queryCitiesList();
+        verify(mInteractor).queryCities();
     }
 
     @Test
