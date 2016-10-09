@@ -1,29 +1,24 @@
-package com.github.jaccek.weatherapp.choosecity;
+package com.github.jaccek.weatherapp.choosecity.interactor;
 
-import com.github.jaccek.weatherapp.converter.ExceptionConversion;
+import com.github.jaccek.weatherapp.choosecity.ContractChooseCity;
 import com.github.jaccek.weatherapp.data.City;
-import com.github.jaccek.weatherapp.network.data.RawCity;
-import com.github.jaccek.weatherapp.network.data.converter.ConverterCity;
+import com.github.jaccek.weatherapp.network.ExceptionNetwork;
 import com.github.jaccek.weatherapp.utils.threads.ThreadRunnerStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InteractorChooseCity implements
         ContractChooseCity.Interactor
 {
-    private ConverterCity mConverterCity;
     private ThreadRunnerStrategy mThreadRunner;
     private DataCollectorChooseCity mDataCollector;
     private ContractChooseCity.PresenterForInteractor mPresenter;
 
     public InteractorChooseCity(ThreadRunnerStrategy pThreadRunner,
-                                DataCollectorChooseCity pDataCollector,
-                                ConverterCity pConverterCity)
+                                DataCollectorChooseCity pDataCollector)
     {
         mThreadRunner = pThreadRunner;
         mDataCollector = pDataCollector;
-        mConverterCity = pConverterCity;
     }
 
     @Override
@@ -47,35 +42,39 @@ public class InteractorChooseCity implements
 
     private void queryCitiesInBackground()
     {
-        List<RawCity> rawCities = mDataCollector.getCities();
-
-        final List<City> convertedCities = new ArrayList<>();
-        for (RawCity rawCity : rawCities)
+        try
         {
-            try
+            final List<City> cities = mDataCollector.getCities();
+            mThreadRunner.executeInMainThread(new Runnable()
             {
-                City city = mConverterCity.convert(rawCity);
-                convertedCities.add(city);
-            }
-            catch(ExceptionConversion pException)
-            {
-                pException.printStackTrace();
-                // just ignore this city
-            }
+                @Override
+                public void run()
+                {
+                    deliverCitiesInUi(cities);
+                }
+            });
         }
-
-        mThreadRunner.executeInMainThread(new Runnable()
+        catch(ExceptionNetwork pExceptionNetwork)
         {
-            @Override
-            public void run()
+            pExceptionNetwork.printStackTrace();
+            mThreadRunner.executeInMainThread(new Runnable()
             {
-                deliverCitiesInUi(convertedCities);
-            }
-        });
+                @Override
+                public void run()
+                {
+                    deliverExceptionInUi();
+                }
+            });
+        }
     }
 
     private void deliverCitiesInUi(List<City> pCities)
     {
         mPresenter.onCities(pCities);
+    }
+
+    private void deliverExceptionInUi()
+    {
+        mPresenter.onError();
     }
 }
