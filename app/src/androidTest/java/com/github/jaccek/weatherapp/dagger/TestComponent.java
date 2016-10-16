@@ -1,7 +1,5 @@
 package com.github.jaccek.weatherapp.dagger;
 
-import com.github.jaccek.weatherapp.actualweather.dagger.TestModuleActualWeather;
-
 import dagger.Component;
 
 /**

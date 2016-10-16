@@ -1,7 +1,6 @@
 package com.github.jaccek.weatherapp.dagger;
 
-import com.github.jaccek.weatherapp.actualweather.ContractActualWeather;
-import com.github.jaccek.weatherapp.actualweather.dagger.ModuleActualWeather;
+import com.github.jaccek.weatherapp.contracts.ContractActualWeather;
 
 import javax.inject.Singleton;
 

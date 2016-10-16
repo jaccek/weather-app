@@ -1,7 +1,7 @@
 package com.github.jaccek.weatherapp.network.retrofit;
 
-import com.github.jaccek.weatherapp.network.data.RawCitiesList;
-import com.github.jaccek.weatherapp.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.models.RawCitiesList;
+import com.github.jaccek.weatherapp.network.models.RawWeatherData;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

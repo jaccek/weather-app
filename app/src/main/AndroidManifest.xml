@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:name="ApplicationWeather">
 
-        <activity android:name=".actualweather.ActivityActualWeather">
+        <activity android:name=".activities.ActivityActualWeather">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".choosecity.view.ActivityChooseCity"/>
+        <activity android:name=".activities.ActivityChooseCity"/>
     </application>
 
 </manifest>

@@ -1,9 +1,9 @@
 package com.github.jaccek.weatherapp.network.retrofit;
 
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
-import com.github.jaccek.weatherapp.network.data.RawCitiesList;
-import com.github.jaccek.weatherapp.network.data.RawCity;
-import com.github.jaccek.weatherapp.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.models.RawCitiesList;
+import com.github.jaccek.weatherapp.network.models.RawCity;
+import com.github.jaccek.weatherapp.network.models.RawWeatherData;
 
 import org.junit.Before;
 import org.junit.Rule;

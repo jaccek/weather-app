@@ -3,7 +3,7 @@ package com.github.jaccek.weatherapp;
 import android.app.Application;
 import android.support.annotation.VisibleForTesting;
 
-import com.github.jaccek.weatherapp.actualweather.dagger.ModuleActualWeather;
+import com.github.jaccek.weatherapp.dagger.ModuleActualWeather;
 import com.github.jaccek.weatherapp.dagger.ApplicationComponent;
 import com.github.jaccek.weatherapp.dagger.DaggerApplicationComponent;
 

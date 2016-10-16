@@ -2,11 +2,11 @@ package com.github.jaccek.weatherapp.network.retrofit;
 
 import android.support.annotation.NonNull;
 
-import com.github.jaccek.weatherapp.actualweather.interactor.network.ConnectorActualWeather;
+import com.github.jaccek.weatherapp.network.connectors.ConnectorActualWeather;
 import com.github.jaccek.weatherapp.network.ExceptionNetwork;
-import com.github.jaccek.weatherapp.network.data.RawCitiesList;
-import com.github.jaccek.weatherapp.network.data.RawCity;
-import com.github.jaccek.weatherapp.network.data.RawWeatherData;
+import com.github.jaccek.weatherapp.network.models.RawCitiesList;
+import com.github.jaccek.weatherapp.network.models.RawCity;
+import com.github.jaccek.weatherapp.network.models.RawWeatherData;
 
 import java.io.IOException;
 import java.util.List;
