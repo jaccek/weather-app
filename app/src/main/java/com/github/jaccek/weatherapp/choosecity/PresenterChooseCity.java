@@ -20,14 +20,17 @@ public class PresenterChooseCity implements
 
     private List<City> mCities;
 
-    public PresenterChooseCity(ContractChooseCity.Interactor pInteractor,
-                               ContractChooseCity.Router pRouter,
-                               ContractChooseCity.View pView)
+    public PresenterChooseCity(ContractChooseCity.Interactor pInteractor)
+    {
+        mInteractor = pInteractor;
+        mInteractor.setPresenter(this);
+    }
+
+    @Override
+    public void init(ContractChooseCity.View pView, ContractChooseCity.Router pRouter)
     {
         mView = pView;
         mRouter = pRouter;
-        mInteractor = pInteractor;
-        mInteractor.setPresenter(this);
     }
 
     @Override

@@ -25,6 +25,8 @@ public interface ContractChooseCity
 
     interface Presenter
     {
+        void init(View pView, Router pRouter);
+
         void onCreate();
 
         void onCitySelected(City pCity);

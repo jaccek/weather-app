@@ -24,6 +24,8 @@ public class ActivityChooseCity extends AppCompatActivity implements
 
     private static final int LAYOUT_ID = R.layout.activity_city_chooser;
 
+    ContractChooseCity.Presenter mPresenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {

@@ -36,7 +36,8 @@ public class PresenterChooseCityTest
     @Before
     public void init()
     {
-        mPresenter = new PresenterChooseCity(mInteractor, mRouter, mView);
+        mPresenter = new PresenterChooseCity(mInteractor);
+        mPresenter.init(mView, mRouter);
     }
 
     @Test
